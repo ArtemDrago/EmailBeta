@@ -1,0 +1,26 @@
+.name {
+    width: 80%;
+    height: 25px;
+    padding: 5px;
+    font-style: italic;
+    color: teal;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name:hover {
+    background-color: rgba(0, 128, 128, 0.15);
+}
+
+.active {
+    background-color: rgba(0, 128, 128, 0.15);
+}
+
+.active:hover {
+    color: white;
+    background-color: rgba(0, 128, 128, 0.5);
+}
