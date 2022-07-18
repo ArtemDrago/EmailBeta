@@ -3,7 +3,7 @@ import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../
 import { arrayLetters } from "./state"
 
 const initialState: any = {
-   bigFolder: arrayLetters
+   bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
 }
 
 

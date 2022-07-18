@@ -2,6 +2,28 @@ import { applyMiddleware, createStore } from "redux";
 import thunk from "redux-thunk";
 import { rootReduser } from "./redusers";
 
+const saveToLocalStorage = (state: any) => {
+   try {
+      localStorage.setItem('state', JSON.stringify(state));
+   } catch (e) {
+      console.error(e);
+   }
+};
 
+const loadFromLocalStorage = () => {
+   try {
+      const stateStr = localStorage.getItem('state');
+      return stateStr ? JSON.parse(stateStr) : undefined;
+   } catch (e) {
+      console.error(e);
+      return undefined;
+   }
+};
 
-export const store = createStore(rootReduser, applyMiddleware(thunk))
+const persistedStore = loadFromLocalStorage();
+
+export const store = createStore(rootReduser, persistedStore)
+
+store.subscribe(() => {
+   saveToLocalStorage(store.getState());
+});
