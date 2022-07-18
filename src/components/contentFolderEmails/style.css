@@ -1,26 +1,41 @@
 .value {
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 5px 10px;
-border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px;
+  border-radius: 8px;
+  position: relative;
 }
+
 .value:hover {
-  background-color: rgba(0, 128, 128,0.1);
+  background-color: rgba(0, 128, 128, 0.1);
 }
+
 .content-letter {
-    width: 15%;
-    font-size: 18px;
-    color: teal;
-    font-style: italic;
+  width: 15%;
+  font-size: 18px;
+  color: teal;
+  font-style: italic;
 }
-.content-letter_text{
-    font-size: 19px;
-    color: teal;
-    font-style: italic;
-    width: 70%;
-    overflow: hidden;
-    height: 25px;
-    flex-wrap: wrap;
-    padding: 0 5px;
+
+.content-letter_text {
+  font-size: 19px;
+  color: teal;
+  font-style: italic;
+  width: 70%;
+  overflow: hidden;
+  height: 25px;
+  flex-wrap: wrap;
+  padding: 0 5px;
+}
+
+.chect {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: teal;
+  position: absolute;
+  left: 2.5px;
+  top: 15px;
+
 }

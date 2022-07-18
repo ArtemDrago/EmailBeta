@@ -11,16 +11,19 @@ interface ContentFolderEmailsProps {
 
 const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, lookAtLetter }) => {
 
-
     const openLetter = (item: lettersInFolder) => {
-
         lookAtLetter(item)
+        item.chect = true
     }
     return (
         <div
             onClick={() => openLetter(item)}
             className='value'
         >
+            {item.chect
+                ? <></>
+                : <div className='chect'></div>
+            }
             <div className='content-letter'> {item.autor} </div>
             <div className='content-letter_text'> {item.value.substring(0, 35)} </div>
             <div className='content-letter'> {item.date}  </div>

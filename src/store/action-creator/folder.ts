@@ -4,6 +4,7 @@ export interface lettersInFolder {
   value: string,
   autor: string,
   date: string,
+  chect: boolean,
 }
 
 export interface NewFolder {
