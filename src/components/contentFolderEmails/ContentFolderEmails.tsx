@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../store/action-creator/folder';
 import './style.css'
 
@@ -6,7 +7,8 @@ import './style.css'
 interface ContentFolderEmailsProps {
     item: lettersInFolder,
     index: number,
-    lookAtLetter: Function
+    lookAtLetter: Function,
+
 }
 
 const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, lookAtLetter }) => {
@@ -15,6 +17,7 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, 
         lookAtLetter(item)
         item.chect = true
     }
+
     return (
         <div
             onClick={() => openLetter(item)}

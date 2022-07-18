@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { NewFolder } from '../../store/action-creator/folder';
-import { addFolderAction } from '../../store/redusers/folderReduser';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
+import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
+import { addFolderAction, readAllAction } from '../../store/redusers/folderReduser';
 
 import './style.css'
 
 interface SettingBoxProp {
-    filterFolder: Function
+    filterFolder: Function,
+
 }
 
 const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
@@ -36,6 +38,10 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
         filterFolder(inputValue)
     }, [inputValue])
 
+    const readAllEmails = () => {
+        dispatch(readAllAction())
+    }
+
     return (
         <div className='setting'>
             <button
@@ -43,6 +49,12 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
                 onClick={() => newFolder()}
             >
                 Create folder
+            </button>
+            <button
+                className='btn-create'
+                onClick={() => readAllEmails()}
+            >
+                Read all
             </button>
             <input
                 value={inputValue}

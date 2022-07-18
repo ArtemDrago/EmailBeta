@@ -1,5 +1,5 @@
 
-import { FolderAction, FolderActionTypes, NewFolder } from "../action-creator/folder"
+import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../action-creator/folder"
 
 const date = new Date().toLocaleDateString()
 
@@ -90,6 +90,13 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
             }
          }
          return { ...state }
+      case FolderActionTypes.READ_ALL:
+         for (let i in state.bigFolder) {
+            state.bigFolder[i].letters.forEach((elem: lettersInFolder) => {
+               elem.chect = true
+            });
+         }
+         return { ...state }
       default:
          return state
    }
@@ -97,3 +104,4 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
 export const addFolderAction = (payload: NewFolder) => ({ type: FolderActionTypes.ADD_FOLDER, payload })
 export const deliteFolderAction = (payload: string) => ({ type: FolderActionTypes.DELITE_FOLDER, payload })
 export const changeFolderAction = (payload: string[]) => ({ type: FolderActionTypes.CHANGE_FOLDER, payload })
+export const readAllAction = () => ({ type: FolderActionTypes.READ_ALL })

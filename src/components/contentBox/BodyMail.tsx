@@ -45,7 +45,6 @@ const BodyMail: React.FC = () => {
       setFolderType(item)
    }
 
-
    const lookAtLetter = (item: lettersInFolder) => {
       setFullItem(item)
       setVisibleLetter(true)
@@ -54,6 +53,7 @@ const BodyMail: React.FC = () => {
    const closeFullScrin = () => {
       setVisibleLetter(false)
    }
+
 
    return (
       <div className='wrapper'>

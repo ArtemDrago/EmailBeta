@@ -8,7 +8,8 @@ import './style.css'
 interface BodyContentMailProps {
    lookAtLetter: Function,
    setFolder: Function,
-   secondFolderLetter: lettersInFolder[]
+   secondFolderLetter: lettersInFolder[],
+
 }
 
 const BodyContentMail: React.FC<BodyContentMailProps> = ({ setFolder, secondFolderLetter, lookAtLetter }) => {
