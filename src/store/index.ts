@@ -1,5 +1,4 @@
-import { applyMiddleware, createStore } from "redux";
-import thunk from "redux-thunk";
+import { createStore } from "redux";
 import { rootReduser } from "./redusers";
 
 const saveToLocalStorage = (state: any) => {
