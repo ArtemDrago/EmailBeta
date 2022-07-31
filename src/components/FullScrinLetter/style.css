@@ -1,5 +1,5 @@
 .full-scrin {
-   width: 100%;
+   max-width: 100%;
    height: 100%;
    padding: 10px;
 }
@@ -15,7 +15,7 @@
 
 .content {
    font-style: italic;
-   font-size: 20px;
+   font-size: 30px;
    color: teal;
    width: 15%;
    padding: 5px;
@@ -34,8 +34,8 @@
 }
 
 .close-letter {
-   width: 25px;
-   height: 25px;
+   width: 30px;
+   height: 30px;
    border: 1px solid teal;
    border-radius: 50%;
    color: teal;
@@ -43,7 +43,8 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   font-size: 18px;
+   font-size: 22px;
+   margin-left: 25px;
 }
 
 .close-letter:hover {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import FolderName from '../folderName/FolderName';
 import './style.css'
 
@@ -9,18 +10,21 @@ interface TitleBlockMailProps {
 
 const TitleBlockMail: React.FC<TitleBlockMailProps> = ({ keys, setFolder }) => {
     return (
-        <div className='name-folder'>
+        <>
+            <div className='name-folder'>
 
-            {keys.map((item, index) =>
-                <FolderName
-                    item={item}
-                    index={index}
-                    key={index}
-                    setFolder={setFolder}
-                />
-            )}
+                {keys.map((item, index) =>
+                    <FolderName
+                        item={item}
+                        index={index}
+                        key={index}
+                        setFolder={setFolder}
+                    />
+                )}
 
-        </div>
+            </div>
+            <Outlet />
+        </>
     );
 }
 

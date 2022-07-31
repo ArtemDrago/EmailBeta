@@ -16,13 +16,14 @@ export interface NewFolder {
 
 }
 
-export type FolderAction = AddFolderAction | DeliteFolderAction | ChangeFolderAction | ReadAllEmailsAction
+export type FolderAction = AddFolderAction | DeliteFolderAction | ChangeFolderAction | ReadAllEmailsAction | ReadItemEmailAction
 
 export enum FolderActionTypes {
   ADD_FOLDER = "ADD_FOLDER",
   DELITE_FOLDER = "DELITE_FOLDER",
   CHANGE_FOLDER = "CHANGE_FOLDER",
-  READ_ALL = "READ_ALL"
+  READ_ALL = "READ_ALL",
+  READ_MAIL = "READ_MAIL"
 }
 interface AddFolderAction {
   type: FolderActionTypes.ADD_FOLDER;
@@ -38,4 +39,8 @@ interface ChangeFolderAction {
 }
 interface ReadAllEmailsAction {
   type: FolderActionTypes.READ_ALL;
+}
+interface ReadItemEmailAction {
+  type: FolderActionTypes.READ_MAIL;
+  payload: (String | lettersInFolder)[]
 }

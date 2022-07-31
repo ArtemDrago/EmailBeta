@@ -1,10 +1,9 @@
 
 import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../action-creator/folder"
 import { arrayLetters } from "./state"
-import { mapKeys } from 'lodash'
 import _ from "lodash"
 
-const initialState: any = {
+export const initialState: any = {
    bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
 }
 
@@ -32,7 +31,6 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
                delete array[`${currentNameFolder}`]
             }
          }
-
          return { ...state }
       case FolderActionTypes.READ_ALL:
          for (let i in state.bigFolder) {
@@ -41,6 +39,17 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
             });
          }
          return { ...state }
+
+      case FolderActionTypes.READ_MAIL:
+         const folderName = action.payload[0]
+         const letter = action.payload[1]
+         state.bigFolder[`${folderName}`].letters.forEach((item: lettersInFolder) => {
+            if (item === letter) {
+               item.chect = true
+            }
+         })
+         return { ...state }
+
       default:
          return state
    }
@@ -49,3 +58,4 @@ export const addFolderAction = (payload: NewFolder) => ({ type: FolderActionType
 export const deliteFolderAction = (payload: string) => ({ type: FolderActionTypes.DELITE_FOLDER, payload })
 export const changeFolderAction = (payload: string[]) => ({ type: FolderActionTypes.CHANGE_FOLDER, payload })
 export const readAllAction = () => ({ type: FolderActionTypes.READ_ALL })
+export const readLetterAction = (payload: (String | lettersInFolder)[]) => ({ type: FolderActionTypes.READ_MAIL, payload })

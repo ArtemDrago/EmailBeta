@@ -2,24 +2,27 @@
    display: flex;
    flex: 1 1 auto;
    padding: 10px;
+   max-width: 100%;
 }
 
 .value-folder {
-   width: 70%;
+   min-width: 70%;
    padding: 10px;
 }
 
 .not-content {
    text-align: center;
    font-style: italic;
-   font-size: 18px;
+   font-size: 32px;
    color: teal;
+   margin-right: 12%;
+   margin-top: 50px;
 }
 
 .email-box {
    display: flex;
    flex-direction: column;
-   width: 100%;
+   max-width: 100%;
    height: 100%;
    padding: 5px;
 }

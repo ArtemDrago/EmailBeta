@@ -1,39 +1,55 @@
 .setting {
-    width: 100%;
-    height: 80px;
-    padding: 10px;
+    max-width: 100%;
+    height: 100px;
+    padding: 10px 50px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+
 }
+
+.setting:last-child {
+    justify-content: end;
+}
+
 .btn-create {
-width: 100px;
-height: 30px;
-border: 1px solid teal;
-border-radius: 8px;
-background-color: rgba(0, 128, 128, 0.2);
-font-size: 14px;
-font-style: italic;
-font-weight: 200;
-margin:0 15px;
+    width: 140px;
+    height: 60px;
+    border: 1px solid teal;
+    border-radius: 12px;
+    background-color: rgba(0, 128, 128, 0.2);
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 200;
+    margin: 0 15px;
 }
+
 .btn-create:hover {
     background-color: rgba(0, 128, 128, 0.5);
     border: 1px solid rgb(0, 0, 0);
     color: white;
 }
+
 .input-search {
-width: 300px;
-height: 20px;
-border: 2px solid teal;
-border-radius: 8px;
-padding: 5px 10px;
-margin-right: 50px;
-margin-left: 10px;
-font-style: italic;
-color: #000;
+    width: 550px;
+    height: 40px;
+    border: 2px solid teal;
+    border-radius: 12px;
+    padding: 8px 10px;
+    margin-right: 250px;
+    margin-left: 10px;
+    font-style: italic;
+    color: teal;
+    font-size: 20px;
+    font-weight: 600;
 }
+
 .input-search:focus {
     color: teal;
     background-color: rgba(0, 128, 128, 0.15);
+}
+
+.title-change {
+    color: teal;
+    font-style: italic;
 }

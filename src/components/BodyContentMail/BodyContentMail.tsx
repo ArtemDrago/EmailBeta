@@ -6,17 +6,16 @@ import TitleBlockMail from '../titleBlockMail/TitleBlockMail';
 import './style.css'
 
 interface BodyContentMailProps {
-   lookAtLetter: Function,
    setFolder: Function,
    secondFolderLetter: lettersInFolder[],
+   folderType: String,
 
 }
 
-const BodyContentMail: React.FC<BodyContentMailProps> = ({ setFolder, secondFolderLetter, lookAtLetter }) => {
+const BodyContentMail: React.FC<BodyContentMailProps> = ({ setFolder, secondFolderLetter, folderType }) => {
    const { folder } = useTypeSelector(state => state.bigReduser)
    const totalKeys = { ...folder.bigFolder }
    const keys = Object.keys(totalKeys)
-
 
    return (
       <div className='container'>
@@ -33,10 +32,10 @@ const BodyContentMail: React.FC<BodyContentMailProps> = ({ setFolder, secondFold
                <div className='email-box'>
                   {secondFolderLetter.map((item, index) =>
                      <ContentFolderEmails
-                        lookAtLetter={lookAtLetter}
                         item={item}
                         index={index}
                         key={index}
+                        folderType={folderType}
                      />
                   )}
                </div>
@@ -48,6 +47,7 @@ const BodyContentMail: React.FC<BodyContentMailProps> = ({ setFolder, secondFold
                </div>
             }
          </div>
+
 
       </div>
    );

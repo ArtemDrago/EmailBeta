@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
 import { addFolderAction, readAllAction } from '../../store/redusers/folderReduser';
@@ -45,47 +46,50 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
     }
 
     return (
-        <div className='setting'>
-            <button
-                className='btn-create'
-                onClick={() => setVisible(true)}
-            >
-                Create folder
-            </button>
-            <MyModal
-                visible={visible}
-                setVisible={setVisible}
-            >
-                <h3 className='title-change'>Create a new folder</h3>
-                <input
-                    className='my-input'
-                    type="text"
-                    placeholder='Enter a folder name'
-                    value={createInput}
-                    onChange={e => setCreateInput(e.target.value)}
-                />
-                <button
-                    className='btn'
-                    onClick={() => newFolder()}
+        <>
+            <div className='setting'>
+                <div>
+                    <button
+                        className='btn-create'
+                        onClick={() => setVisible(true)}
+                    >
+                        Create folder
+                    </button>
+                    <button
+                        className='btn-create'
+                        onClick={() => readAllEmails()}
+                    >
+                        Read all
+                    </button>
+                </div>
+                <MyModal
+                    visible={visible}
+                    setVisible={setVisible}
                 >
-                    Create
-                </button>
-            </MyModal>
-            <button
-                className='btn-create'
-                onClick={() => readAllEmails()}
-            >
-                Read all
-            </button>
-            <input
-                value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
-                className='input-search'
-                type='text'
-                placeholder="Search for emails..."
-            />
+                    <h3 className='title-change'>Create a new folder</h3>
+                    <input
+                        className='my-input'
+                        type="text"
+                        placeholder='Enter a folder name'
+                        value={createInput}
+                        onChange={e => setCreateInput(e.target.value)} />
+                    <button
+                        className='btn'
+                        onClick={() => newFolder()}
+                    >
+                        Create
+                    </button>
+                </MyModal>
 
-        </div>
+                <input
+                    value={inputValue}
+                    onChange={e => setInputValue(e.target.value)}
+                    className='input-search'
+                    type='text'
+                    placeholder="Search for emails..." />
+            </div>
+            <Outlet />
+        </>
     );
 }
 

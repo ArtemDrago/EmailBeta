@@ -1,36 +1,40 @@
-import React, { useEffect } from 'react';
-import { useTypeSelector } from '../../hooks/useTypeSelector';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { lettersInFolder } from '../../store/action-creator/folder';
+import { readLetterAction } from '../../store/redusers/folderReduser';
 import './style.css'
 
 
 interface ContentFolderEmailsProps {
     item: lettersInFolder,
     index: number,
-    lookAtLetter: Function,
-
+    folderType: String,
 }
 
-const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, lookAtLetter }) => {
+const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, folderType }) => {
 
-    const openLetter = (item: lettersInFolder) => {
-        lookAtLetter(item)
-        item.chect = true
+    const dispatch = useDispatch()
+    const changeReadLetter = (item: lettersInFolder) => {
+        dispatch(readLetterAction([folderType, item]))
     }
-
     return (
-        <button
-            onClick={() => openLetter(item)}
-            className='value'
-        >
-            {item.chect
-                ? <></>
-                : <div className='chect'></div>
-            }
-            <div className='content-letter'> {item.autor} </div>
-            <div className='content-letter_text'> {item.value.substring(0, 35)} </div>
-            <div className='content-letter'> {item.date}  </div>
-        </button>
+        <>
+            <Link
+                onClick={() => changeReadLetter(item)}
+                className='value'
+                to={`/${folderType}/${item.id}`}
+            >
+
+                {item.chect
+                    ? <></>
+                    : <div className='chect'></div>
+                }
+                <div className='content-letter'> {item.autor} </div>
+                <div className='content-letter_text'> {item.value.substring(0, 50)} </div>
+                <div className='content-letter'> {item.date}  </div>
+            </Link>
+        </>
     );
 }
 

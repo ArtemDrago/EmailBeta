@@ -1,9 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
 import BodyContentMail from '../BodyContentMail/BodyContentMail';
 
 import SettingBox from '../createAndSearch/SettingBox';
+import FolderName from '../folderName/FolderName';
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
 import './BodyMail.css'
 
@@ -14,8 +16,6 @@ const BodyMail: React.FC = () => {
    const [folderType, setFolderType] = React.useState<string>('Inbox')
    const [secondFolderLetter, setSecondFolderLetter] = useState(folderLetter)
    const [curValueType, setCurValueType] = useState('')
-   const [visibleLetter, setVisibleLetter] = useState(false)
-   const [fullItem, setFullItem] = useState<lettersInFolder>()
 
    const filterFolder = (str: string) => {
       setCurValueType(str)
@@ -45,34 +45,38 @@ const BodyMail: React.FC = () => {
       setFolderType(item)
    }
 
-   const lookAtLetter = (item: lettersInFolder) => {
-      setFullItem(item)
-      setVisibleLetter(true)
-   }
-
-   const closeFullScrin = () => {
-      setVisibleLetter(false)
-   }
-
-
    return (
       <div className='wrapper'>
-         <SettingBox
-            filterFolder={filterFolder}
-         />
-         {visibleLetter
-            ? <FullScrinLetter
-               closeFullScrin={closeFullScrin}
-               fullItem={fullItem}
-            />
-            : <BodyContentMail
-               lookAtLetter={lookAtLetter}
-               setFolder={setFolder}
-               secondFolderLetter={secondFolderLetter}
-            />
-         }
-
-
+         <Routes>
+            <Route
+               path='/'
+               element={<SettingBox
+                  filterFolder={filterFolder}
+               />} >
+               <Route
+                  path='/:folderType/:id'
+                  element={<FullScrinLetter
+                     secondFolderLetter={secondFolderLetter}
+                  />}
+               />
+               <Route
+                  path='/'
+                  element={<BodyContentMail
+                     folderType={folderType}
+                     setFolder={setFolder}
+                     secondFolderLetter={secondFolderLetter}
+                  />}
+               />
+               <Route
+                  path='/:folderType'
+                  element={<FolderName
+                     item={''}
+                     index={0}
+                     setFolder={setFolder}
+                  />}
+               />
+            </Route>
+         </Routes>
       </div>
    );
 }

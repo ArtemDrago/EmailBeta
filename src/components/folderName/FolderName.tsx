@@ -7,7 +7,6 @@ interface FolderNameProps {
     item: string,
     index: number,
     setFolder: Function,
-
 }
 
 const FolderName: React.FC<FolderNameProps> = ({ item, index, setFolder }) => {
@@ -21,6 +20,7 @@ const FolderName: React.FC<FolderNameProps> = ({ item, index, setFolder }) => {
         classListItem[index].classList.add('active')
         e.stopPropagation()
         setFolder(item)
+        // setFluterName(item)
     }
 
     useEffect(() => {

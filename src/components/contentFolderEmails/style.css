@@ -2,9 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 5px 10px;
-  border-radius: 8px;
+  padding: 10px;
+  border-radius: 12px;
   position: relative;
+  height: 40px;
 }
 
 .value:hover {
@@ -13,29 +14,30 @@
 
 .content-letter {
   width: 15%;
-  font-size: 18px;
+  font-size: 26px;
   color: teal;
   font-style: italic;
+  height: 100%;
 }
 
 .content-letter_text {
-  font-size: 19px;
+  font-size: 26px;
   color: teal;
   font-style: italic;
   width: 70%;
   overflow: hidden;
-  height: 25px;
+  height: 100%;
   flex-wrap: wrap;
   padding: 0 5px;
 }
 
 .chect {
-  width: 5px;
-  height: 5px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: teal;
   position: absolute;
-  left: 2.5px;
-  top: 15px;
+  left: 1px;
+  top: 37%;
 
 }
