@@ -4,10 +4,10 @@ import cl from './MyModal.module.css';
 interface MyModalProps {
     children: any,
     visible: boolean,
-    setVisible: Function
+    setVisible: Function,
 }
 
-const MyModal: React.FC<MyModalProps> = ({children, visible, setVisible}) => {
+const MyModal: React.FC<MyModalProps> = ({ children, visible, setVisible }) => {
 
     const rootClasses = [cl.myModal]
 

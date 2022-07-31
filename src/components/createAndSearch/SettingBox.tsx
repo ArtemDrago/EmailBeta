@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
 import { addFolderAction, readAllAction } from '../../store/redusers/folderReduser';
+import MyModal from '../UI/modal/MyModal';
 
 import './style.css'
 
@@ -15,24 +16,25 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
 
     const [inputValue, setInputValue] = React.useState<string>('')
     const dispatch = useDispatch()
+    const [visible, setVisible] = useState(false)
+    const [createInput, setCreateInput] = useState('')
 
     const newFolder = () => {
-        const nameFolder = prompt()
         const newFolder = {
             id: new Date(),
             letters: [],
             changeFolder: true,
         }
-        if (nameFolder?.length != 0) {
-
+        if (!/^[0-9]+$/.test(createInput) && createInput?.length != 0) {
             const obj: NewFolder = {}
-            Object.assign(obj, { [`${nameFolder}`]: newFolder })
-
+            Object.assign(obj, { [`${createInput}`]: newFolder })
             dispatch(addFolderAction(obj))
         }
         else {
-            alert('Не указанно имя папки')
+            alert('Folder name not specified')
         }
+        setVisible(false)
+        setCreateInput('')
     }
     useEffect(() => {
         filterFolder(inputValue)
@@ -46,10 +48,29 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
         <div className='setting'>
             <button
                 className='btn-create'
-                onClick={() => newFolder()}
+                onClick={() => setVisible(true)}
             >
                 Create folder
             </button>
+            <MyModal
+                visible={visible}
+                setVisible={setVisible}
+            >
+                <h3 className='title-change'>Create a new folder</h3>
+                <input
+                    className='my-input'
+                    type="text"
+                    placeholder='Enter a folder name'
+                    value={createInput}
+                    onChange={e => setCreateInput(e.target.value)}
+                />
+                <button
+                    className='btn'
+                    onClick={() => newFolder()}
+                >
+                    Create
+                </button>
+            </MyModal>
             <button
                 className='btn-create'
                 onClick={() => readAllEmails()}

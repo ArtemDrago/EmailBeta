@@ -18,7 +18,7 @@ const CastomFluters: React.FC<CastomFlutersProps> = ({ item, setFolder }) => {
     const remuvFolder = (item: string, e: any) => {
         e.stopPropagation()
         dispatch(deliteFolderAction(item))
-        setFolder('Входящие')
+        setFolder('Inbox')
     }
     const changeTitleFolderVisible = (e: any) => {
         e.stopPropagation()
@@ -27,26 +27,29 @@ const CastomFluters: React.FC<CastomFlutersProps> = ({ item, setFolder }) => {
     const changeTitleFolder = (e: any, item: string) => {
         e.stopPropagation()
         setVisible(false)
-        if (valueInput.length != 0) {
+        if (!/^[0-9]+$/.test(valueInput) && valueInput.length != 0) {
             dispatch(changeFolderAction([item, valueInput]))
         }
+        dispatch(changeFolderAction([item, 'Folder name']))
         setValueInput('')
     }
-
     return (
         <div className='btn-container'>
-            <div
+            <button
                 className='btn-change'
                 onClick={e => changeTitleFolderVisible(e)}
             >
                 <FontAwesomeIcon icon={['fas', 'pen']} />
-            </div>
-            <MyModal visible={visible} setVisible={setVisible} >
-                <h3>Сменить имя папки</h3>
+            </button>
+            <MyModal
+                visible={visible}
+                setVisible={setVisible}
+            >
+                <h3 className='title-change'>Change folder name</h3>
                 <input
                     className='my-input'
                     type="text"
-                    placeholder='Введите новое имя папки'
+                    placeholder='Enter a new folder name'
                     value={valueInput}
                     onChange={e => setValueInput(e.target.value)}
                 />
@@ -54,15 +57,15 @@ const CastomFluters: React.FC<CastomFlutersProps> = ({ item, setFolder }) => {
                     className='btn'
                     onClick={e => changeTitleFolder(e, item)}
                 >
-                    Изменить
+                    Change
                 </button>
             </MyModal>
-            <div
+            <button
                 className='btn-remuve'
                 onClick={e => remuvFolder(item, e)}
             >
                 <FontAwesomeIcon icon={['fas', 'trash']} />
-            </div>
+            </button>
 
         </div>
     );

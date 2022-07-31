@@ -1,6 +1,8 @@
 
 import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../action-creator/folder"
 import { arrayLetters } from "./state"
+import { mapKeys } from 'lodash'
+import _ from "lodash"
 
 const initialState: any = {
    bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
@@ -22,7 +24,7 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
       case FolderActionTypes.CHANGE_FOLDER:
          const currentNameFolder = action.payload[0]
          const changeNameFolder = action.payload[1]
-         const array = state.bigFolder
+         let array = state.bigFolder
 
          for (let changeFluterName in array) {
             if (changeFluterName === currentNameFolder) {
@@ -30,6 +32,7 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
                delete array[`${currentNameFolder}`]
             }
          }
+
          return { ...state }
       case FolderActionTypes.READ_ALL:
          for (let i in state.bigFolder) {

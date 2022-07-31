@@ -19,7 +19,7 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, 
     }
 
     return (
-        <div
+        <button
             onClick={() => openLetter(item)}
             className='value'
         >
@@ -30,7 +30,7 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, 
             <div className='content-letter'> {item.autor} </div>
             <div className='content-letter_text'> {item.value.substring(0, 35)} </div>
             <div className='content-letter'> {item.date}  </div>
-        </div>
+        </button>
     );
 }
 

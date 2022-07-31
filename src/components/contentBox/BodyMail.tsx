@@ -11,7 +11,7 @@ import './BodyMail.css'
 const BodyMail: React.FC = () => {
    const { folder } = useTypeSelector(state => state.bigReduser)
    const [folderLetter, setFolderLetter] = React.useState<Array<lettersInFolder>>([])
-   const [folderType, setFolderType] = React.useState<string>('Входящие')
+   const [folderType, setFolderType] = React.useState<string>('Inbox')
    const [secondFolderLetter, setSecondFolderLetter] = useState(folderLetter)
    const [curValueType, setCurValueType] = useState('')
    const [visibleLetter, setVisibleLetter] = useState(false)
@@ -32,7 +32,7 @@ const BodyMail: React.FC = () => {
    }, [curValueType, folderLetter])
 
    useMemo(() => {
-      setFolderLetter(folder.bigFolder.Входящие.letters)
+      setFolderLetter(folder.bigFolder.Inbox.letters)
    }, [])
 
    useEffect(() => {

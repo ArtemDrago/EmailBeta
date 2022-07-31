@@ -58,3 +58,7 @@
     background-color: rgba(0, 128, 128, 0.16);
     color: grey;
 }
+
+.title-change {
+    z-index: 11;
+}

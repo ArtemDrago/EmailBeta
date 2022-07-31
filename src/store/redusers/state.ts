@@ -1,15 +1,21 @@
 const date = new Date().toLocaleDateString()
 
 export const arrayLetters = {
-   "Входящие": {
+   "Inbox": {
       id: 1,
       letters: [
          {
             id: 1,
-            value: "Очень много текста и другой информации...", autor: "German", date: date, chect: false
+            value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit
+             Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis
+              alias iste natus minima magnam similique enim labore hic repellat omnis doloremque.`
+            , autor: "German", date: date, chect: false
          },
          {
-            id: 2, value: "text2 TRtji jios i hufuwn ncbdhj bjsbfbjbjb bf ",
+            id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+             Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+             alias iste natus minima magnam similique enim labore hic repellat omnis
+              doloremque.`,
             autor: "Garry", date: date, chect: false
          },
          {
@@ -25,54 +31,121 @@ export const arrayLetters = {
       ],
       changeFolder: false,
    },
-   "Исходящие": {
+   "Outgoing": {
       id: 2,
       letters: [
-         { id: 1, value: "текст", autor: "Black", date: date, chect: false },
-         { id: 2, value: "текст2", autor: "White", date: date, chect: false },
-         { id: 3, value: "текст3", autor: "Pinc", date: date, chect: false },
+         {
+            id: 1, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Black", date: date, chect: false
+         },
+         {
+            id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "White", date: date, chect: false
+         },
+         {
+            id: 3, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Pinc", date: date, chect: false
+         },
       ],
       changeFolder: false,
    },
-   "Черновики": {
+   "Drafts": {
       id: 3,
       letters: [
-         { id: 1, value: "Очень много текста и другой информации...", autor: "German", date: date, chect: false },
-         { id: 2, value: "text2 TRtji jios i hufuwn ncbdhj bjsbfbjbjb bf ", autor: "Garry", date: date, chect: false },
-         { id: 3, value: "text3", autor: "Cherry", date: date, chect: false },
+         {
+            id: 1, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "German", date: date, chect: false
+         },
+         {
+            id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Garry", date: date, chect: false
+         },
+         {
+            id: 3, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Cherry", date: date, chect: false
+         },
       ],
       changeFolder: false,
    },
-   "Удаленные": {
+   "Remote": {
       id: 4,
       letters: [
-         { id: 1, value: "текст", autor: "Black", date: date, chect: false },
-         { id: 2, value: "текст2", autor: "White", date: date, chect: false },
-         { id: 3, value: "текст3", autor: "Pinc", date: date, chect: false },
          {
-            id: 4, value: "Очень много текста и другой информации...",
+            id: 1, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Black", date: date, chect: false
+         },
+         {
+            id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "White", date: date, chect: false
+         },
+         {
+            id: 3, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Pinc", date: date, chect: false
+         },
+         {
+            id: 4, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+            alias iste natus minima magnam similique enim labore hic repellat omnis
+             doloremque.`,
             autor: "German", date: date, chect: false
          },
          {
-            id: 5, value: "text2 TRtji jios i hufuwn ncbdhj bjsbfbjbjb bf ",
+            id: 5, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+            alias iste natus minima magnam similique enim labore hic repellat omnis
+             doloremque.`,
             autor: "Garry", date: date, chect: false
          },
-         { id: 6, value: "text3", autor: "Cherry", date: date, chect: false },
+         {
+            id: 6, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Cherry", date: date, chect: false
+         },
       ],
       changeFolder: false,
    },
-   "Спам": {
+   "Spam": {
       id: 5,
       letters: [
          {
-            id: 1, value: "Очень много текста и другой информации...",
+            id: 1, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+            alias iste natus minima magnam similique enim labore hic repellat omnis
+             doloremque.`,
             autor: "German", date: date, chect: false
          },
          {
-            id: 2, value: "text2 TRtji jios i hufuwn ncbdhj bjsbfbjbjb bf ",
+            id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+            alias iste natus minima magnam similique enim labore hic repellat omnis
+             doloremque.`,
             autor: "Garry", date: date, chect: false
          },
-         { id: 3, value: "text3", autor: "Cherry", date: date, chect: false },
+         {
+            id: 3, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Cherry", date: date, chect: false
+         },
       ],
       changeFolder: false,
    },
