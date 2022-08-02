@@ -24,13 +24,16 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
          const currentNameFolder = action.payload[0]
          const changeNameFolder = action.payload[1]
          let array = state.bigFolder
-
-         for (let changeFluterName in array) {
-            if (changeFluterName === currentNameFolder) {
-               array[`${changeNameFolder}`] = array[`${currentNameFolder}`]
-               delete array[`${currentNameFolder}`]
+         let keys = Object.keys(array)
+         let value = Object.values(array)
+         const j = keys.map(item => {
+            if (item === currentNameFolder) {
+               return changeNameFolder
             }
-         }
+            return item
+         })
+         const newArr = j.reduce((acc, n, i) => ({ ...acc, [n]: value[i] }), {})
+         state.bigFolder = newArr
          return { ...state }
       case FolderActionTypes.READ_ALL:
          for (let i in state.bigFolder) {

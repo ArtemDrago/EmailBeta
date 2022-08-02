@@ -1,7 +1,9 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../store/action-creator/folder';
 import ContentFolderEmails from '../contentFolderEmails/ContentFolderEmails';
+import FolderLetters from '../FolderLetters/FolderLetters';
 import TitleBlockMail from '../titleBlockMail/TitleBlockMail';
 import './style.css'
 
@@ -13,40 +15,23 @@ interface BodyContentMailProps {
 }
 
 const BodyContentMail: React.FC<BodyContentMailProps> = ({ setFolder, secondFolderLetter, folderType }) => {
-   const { folder } = useTypeSelector(state => state.bigReduser)
-   const totalKeys = { ...folder.bigFolder }
-   const keys = Object.keys(totalKeys)
+   // const { folder } = useTypeSelector(state => state.bigReduser)
+   // const totalKeys = { ...folder.bigFolder }
+   // const keys = Object.keys(totalKeys)
 
    return (
       <div className='container'>
+         <Outlet />
 
-         <TitleBlockMail
+         {/* <TitleBlockMail
             keys={keys}
             setFolder={setFolder}
+         /> */}
+
+         <FolderLetters
+            secondFolderLetter={secondFolderLetter}
+            folderType={folderType}
          />
-
-         <div className='value-folder'>
-
-            {secondFolderLetter.length > 0 ?
-
-               <div className='email-box'>
-                  {secondFolderLetter.map((item, index) =>
-                     <ContentFolderEmails
-                        item={item}
-                        index={index}
-                        key={index}
-                        folderType={folderType}
-                     />
-                  )}
-               </div>
-               :
-               <div
-                  className='not-content'
-               >
-                  Emails not found
-               </div>
-            }
-         </div>
 
 
       </div>

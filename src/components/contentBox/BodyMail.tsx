@@ -5,8 +5,10 @@ import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
 import BodyContentMail from '../BodyContentMail/BodyContentMail';
 
 import SettingBox from '../createAndSearch/SettingBox';
+import FolderLetters from '../FolderLetters/FolderLetters';
 import FolderName from '../folderName/FolderName';
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
+import TitleBlockMail from '../titleBlockMail/TitleBlockMail';
 import './BodyMail.css'
 
 
@@ -44,6 +46,8 @@ const BodyMail: React.FC = () => {
    const setFolder = (item: string) => {
       setFolderType(item)
    }
+   const totalKeys = { ...folder.bigFolder }
+   const keys = Object.keys(totalKeys)
 
    return (
       <div className='wrapper'>
@@ -66,15 +70,17 @@ const BodyMail: React.FC = () => {
                      setFolder={setFolder}
                      secondFolderLetter={secondFolderLetter}
                   />}
-               />
-               <Route
-                  path='/:folderType'
-                  element={<FolderName
-                     item={''}
-                     index={0}
-                     setFolder={setFolder}
-                  />}
-               />
+               >
+                  <Route
+                     path='/'
+                     element={<TitleBlockMail
+                        keys={keys}
+                        setFolder={setFolder}
+                     />
+                     }
+                  />
+
+               </Route>
             </Route>
          </Routes>
       </div>

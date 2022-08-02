@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CastomFluters from '../castomFluters/CastomFluters';
 import './style.css'
 
@@ -20,7 +21,6 @@ const FolderName: React.FC<FolderNameProps> = ({ item, index, setFolder }) => {
         classListItem[index].classList.add('active')
         e.stopPropagation()
         setFolder(item)
-        // setFluterName(item)
     }
 
     useEffect(() => {
