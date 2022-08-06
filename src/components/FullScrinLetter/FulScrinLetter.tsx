@@ -1,17 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../store/action-creator/folder';
 import './style.css'
 
 interface FullScrinLetterProps {
-   secondFolderLetter: lettersInFolder[],
+   folderType: String
 }
 
-const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ secondFolderLetter }) => {
+const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
+   const { folder } = useTypeSelector(state => state.bigReduser)
    const { id } = useParams()
+   const stateFolder: lettersInFolder[] = folder.bigFolder[`${folderType}`].letters
    const navigate = useNavigate()
-   const stateItem = secondFolderLetter.filter(item => item.id.toString() === id)
+   const curId = (!isNaN(+`${id}`) && stateFolder.length >= +`${id}`) ? id : '1'
+   const stateItem = stateFolder.filter(item => item.id.toString() === curId)
    const valuesArr = [...stateItem]
 
    return (

@@ -1,47 +1,34 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import React, { useMemo, useState } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
-import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
+import { store } from '../../store';
 import BodyContentMail from '../BodyContentMail/BodyContentMail';
-
 import SettingBox from '../createAndSearch/SettingBox';
 import FolderLetters from '../FolderLetters/FolderLetters';
-import FolderName from '../folderName/FolderName';
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
 import TitleBlockMail from '../titleBlockMail/TitleBlockMail';
 import './BodyMail.css'
 
-
 const BodyMail: React.FC = () => {
    const { folder } = useTypeSelector(state => state.bigReduser)
-   const [folderLetter, setFolderLetter] = React.useState<Array<lettersInFolder>>([])
    const [folderType, setFolderType] = React.useState<string>('Inbox')
-   const [secondFolderLetter, setSecondFolderLetter] = useState(folderLetter)
    const [curValueType, setCurValueType] = useState('')
 
    const filterFolder = (str: string) => {
       setCurValueType(str)
    }
 
-   useMemo(() => {
-      setSecondFolderLetter(folderLetter)
-      if (curValueType) {
-         return setSecondFolderLetter(folderLetter.filter(folder =>
-            folder.value.toLowerCase().includes(curValueType.toLowerCase())
-         ))
+   const rerenderUrl = () => {
+      const urlPath = document.location.pathname
+      if (urlPath == '/') {
+         document.location.pathname = '/Inbox'
       }
-      return secondFolderLetter
-   }, [curValueType, folderLetter])
+   }
 
    useMemo(() => {
-      setFolderLetter(folder.bigFolder.Inbox.letters)
+      localStorage.setItem('state', JSON.stringify(store.getState()));
+      rerenderUrl()
    }, [])
-
-   useEffect(() => {
-      const arrFolder = folder.bigFolder
-      const thisFolder = Object.getOwnPropertyDescriptor(arrFolder, folderType)
-      setFolderLetter(thisFolder?.value.letters)
-   }, [folderType])
 
    const setFolder = (item: string) => {
       setFolderType(item)
@@ -56,21 +43,22 @@ const BodyMail: React.FC = () => {
                path='/'
                element={<SettingBox
                   filterFolder={filterFolder}
-               />} >
+               />}
+            >
                <Route
                   path='/:folderType/:id'
                   element={<FullScrinLetter
-                     secondFolderLetter={secondFolderLetter}
+                     folderType={folderType}
                   />}
                />
                <Route
-                  path='/'
+                  path=''
                   element={<BodyContentMail
+                     curValueType={curValueType}
                      folderType={folderType}
-                     setFolder={setFolder}
-                     secondFolderLetter={secondFolderLetter}
                   />}
                >
+
                   <Route
                      path='/'
                      element={<TitleBlockMail
@@ -78,10 +66,26 @@ const BodyMail: React.FC = () => {
                         setFolder={setFolder}
                      />
                      }
-                  />
+                  >
+                     <Route
+                        path=':folderType'
+                        element={<FolderLetters
+                           curValueType={curValueType}
+                           folderType={folderType}
+                        />
+                        }
+                     />
 
+                     <Route
+                        path='*'
+                        element={<Navigate
+                           to={`/Inbox`}
+                        />}
+                     />
+                  </Route>
                </Route>
             </Route>
+
          </Routes>
       </div>
    );

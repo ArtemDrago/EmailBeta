@@ -9,7 +9,7 @@ import './style.css'
 interface ContentFolderEmailsProps {
     item: lettersInFolder,
     index: number,
-    folderType: String,
+    folderType: String | any,
 }
 
 const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, folderType }) => {

@@ -16,15 +16,18 @@ const CastomFluters: React.FC<CastomFlutersProps> = ({ item, setFolder }) => {
     const [valueInput, setValueInput] = useState('')
 
     const remuvFolder = (item: string, e: any) => {
+        e.preventDefault()
         e.stopPropagation()
         dispatch(deliteFolderAction(item))
         setFolder('Inbox')
     }
     const changeTitleFolderVisible = (e: any) => {
+        e.preventDefault()
         e.stopPropagation()
         setVisible(true)
     }
     const changeTitleFolder = (e: any, item: string) => {
+        e.preventDefault()
         e.stopPropagation()
         setVisible(false)
         if (!/^[0-9]+$/.test(valueInput) && valueInput.length != 0) {

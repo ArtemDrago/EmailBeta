@@ -25,3 +25,7 @@
     color: white;
     background-color: rgba(0, 128, 128, 0.5);
 }
+
+a[aria-current] {
+    background-color: rgba(0, 128, 128, 0.25);
+}

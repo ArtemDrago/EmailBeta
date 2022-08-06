@@ -7,7 +7,6 @@ export const initialState: any = {
    bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
 }
 
-
 export const folderReduser = (state = initialState, action: FolderAction) => {
    switch (action.type) {
       case FolderActionTypes.ADD_FOLDER:
