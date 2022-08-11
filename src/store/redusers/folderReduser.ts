@@ -1,13 +1,13 @@
 
 import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../action-creator/folder"
+import { LeterAction, LeterActionTypes } from "../action-creator/leter"
 import { arrayLetters } from "./state"
-import _ from "lodash"
 
 export const initialState: any = {
    bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
 }
 
-export const folderReduser = (state = initialState, action: FolderAction) => {
+export const folderReduser = (state = initialState, action: FolderAction | LeterAction) => {
    switch (action.type) {
       case FolderActionTypes.ADD_FOLDER:
          return { ...state, bigFolder: { ...state.bigFolder, ...action.payload } }
@@ -52,6 +52,18 @@ export const folderReduser = (state = initialState, action: FolderAction) => {
          })
          return { ...state }
 
+      case LeterActionTypes.DELITE_LETER:
+         const folderCase = action.payload.folderType
+         const leter = action.payload.item
+         const filterArr = state.bigFolder[`${folderCase}`].letters.filter((item: lettersInFolder) => item.id !== leter.id)
+         state.bigFolder[`${folderCase}`].letters = filterArr
+         const newId = new Date()
+         const idMail = +newId
+         leter.id = idMail
+         state.bigFolder.Remote.letters.push(leter)
+         console.log(state.bigFolder.Remote.letters)
+         return { ...state }
+
       default:
          return state
    }
@@ -61,3 +73,4 @@ export const deliteFolderAction = (payload: string) => ({ type: FolderActionType
 export const changeFolderAction = (payload: string[]) => ({ type: FolderActionTypes.CHANGE_FOLDER, payload })
 export const readAllAction = () => ({ type: FolderActionTypes.READ_ALL })
 export const readLetterAction = (payload: (String | lettersInFolder)[]) => ({ type: FolderActionTypes.READ_MAIL, payload })
+export const deilteLeterAction = (payload: { folderType: String, item: lettersInFolder }) => ({ type: LeterActionTypes.DELITE_LETER, payload })

@@ -28,6 +28,45 @@ export const arrayLetters = {
               excepturi veniam, aliquam quis!`,
             autor: "Cherry", date: date, chect: false
          },
+
+         {
+            id: 4, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Black", date: date, chect: false
+         },
+         {
+            id: 5, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "White", date: date, chect: false
+         },
+         {
+            id: 6, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Pinc", date: date, chect: false
+         },
+         {
+            id: 7, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+            alias iste natus minima magnam similique enim labore hic repellat omnis
+             doloremque.`,
+            autor: "German", date: date, chect: false
+         },
+         {
+            id: 8, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+            alias iste natus minima magnam similique enim labore hic repellat omnis
+             doloremque.`,
+            autor: "Garry", date: date, chect: false
+         },
+         {
+            id: 9, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
+         alias iste natus minima magnam similique enim labore hic repellat omnis
+          doloremque.`, autor: "Cherry", date: date, chect: false
+         },
       ],
       changeFolder: false,
    },
@@ -82,44 +121,6 @@ export const arrayLetters = {
    "Remote": {
       id: 4,
       letters: [
-         {
-            id: 1, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
-         alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "Black", date: date, chect: false
-         },
-         {
-            id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
-         alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "White", date: date, chect: false
-         },
-         {
-            id: 3, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
-         alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "Pinc", date: date, chect: false
-         },
-         {
-            id: 4, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
-            alias iste natus minima magnam similique enim labore hic repellat omnis
-             doloremque.`,
-            autor: "German", date: date, chect: false
-         },
-         {
-            id: 5, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
-            alias iste natus minima magnam similique enim labore hic repellat omnis
-             doloremque.`,
-            autor: "Garry", date: date, chect: false
-         },
-         {
-            id: 6, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-         Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
-         alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "Cherry", date: date, chect: false
-         },
       ],
       changeFolder: false,
    },

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { NewFolder } from '../../store/action-creator/folder';
 import { addFolderAction, readAllAction } from '../../store/redusers/folderReduser';
 import MyModal from '../UI/modal/MyModal';
-
 import './style.css'
 
 interface SettingBoxProp {
     filterFolder: Function,
-
 }
 
 const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
-
+    const { folder } = useTypeSelector(state => state.bigReduser)
+    const keys = Object.keys(folder.bigFolder)
     const [inputValue, setInputValue] = React.useState<string>('')
     const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
@@ -44,6 +44,15 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
         dispatch(readAllAction())
     }
 
+    useEffect(() => {
+        const buttonList = document.querySelectorAll('.btn-create')
+        if (keys.length >= 10) {
+            buttonList[0].classList.add('disable')
+        } else {
+            buttonList[0].classList.remove('disable')
+        }
+    }, [keys])
+
     return (
         <>
             <div className='setting'>
@@ -51,6 +60,7 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
                     <button
                         className='btn-create'
                         onClick={() => setVisible(true)}
+                        disabled={(keys.length < 10) ? false : true}
                     >
                         Create folder
                     </button>

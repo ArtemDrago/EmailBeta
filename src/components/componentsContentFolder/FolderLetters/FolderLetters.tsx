@@ -25,6 +25,9 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType }) => {
          setFolderMass(folder.bigFolder[`${current}`].letters)
       }
    }
+   useMemo(() => {
+      isFolder()
+   }, [folder])
 
    useMemo(() => {
       isFolder()

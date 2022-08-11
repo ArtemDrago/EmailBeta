@@ -1,8 +1,9 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { lettersInFolder } from '../../../store/action-creator/folder';
-import { readLetterAction } from '../../../store/redusers/folderReduser';
+import { deilteLeterAction, readLetterAction } from '../../../store/redusers/folderReduser';
 import './style.css'
 
 interface ContentFolderEmailsProps {
@@ -16,6 +17,15 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, folderT
     const changeReadLetter = (item: lettersInFolder) => {
         dispatch(readLetterAction([folderType, item]))
     }
+    const deliteEmail = (e: any, item: lettersInFolder) => {
+        e.preventDefault()
+        e.stopPropagation()
+        dispatch(deilteLeterAction({
+            folderType: folderType,
+            item
+        }))
+    }
+
     return (
         <>
             <Link
@@ -23,14 +33,25 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, folderT
                 className='value'
                 to={`/${folderType}/${item.id}`}
             >
-
-                {item.chect
-                    ? <></>
-                    : <div className='chect'></div>
-                }
+                <div className='look'>
+                    {item.chect
+                        ? //<input type='checkbox'></input>
+                        <></>
+                        :
+                        <div className='chect'></div>
+                    }
+                </div>
                 <div className='content-letter'> {item.autor} </div>
                 <div className='content-letter_text'> {item.value.substring(0, 50)} </div>
-                <div className='content-letter'> {item.date}  </div>
+                <div className='content-letter'> {item.date} </div>
+                <div className='delite-container'>
+                    <button
+                        className='delite-leter'
+                        onClick={e => deliteEmail(e, item)}
+                    >
+                        <FontAwesomeIcon icon={['fas', 'trash']} />
+                    </button>
+                </div>
             </Link>
         </>
     );

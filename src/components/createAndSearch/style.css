@@ -39,9 +39,20 @@
     margin-right: 250px;
     margin-left: 10px;
     font-style: italic;
-    color: teal;
     font-size: 20px;
     font-weight: 600;
+}
+
+.input-search::placeholder {
+    color: teal;
+}
+
+.input-search:hover {
+    border: 2px solid rgb(7, 87, 0);
+}
+
+.input-search:hover::placeholder {
+    color: rgb(7, 87, 0);
 }
 
 .input-search:focus {
@@ -52,4 +63,15 @@
 .title-change {
     color: teal;
     font-style: italic;
+}
+
+.disable {
+    border: 1px solid gray;
+    background-color: rgba(128, 128, 128, 0.15);
+    cursor: default;
+}
+
+.disable:hover {
+    background-color: rgba(128, 128, 128, 0.15);
+    color: black;
 }

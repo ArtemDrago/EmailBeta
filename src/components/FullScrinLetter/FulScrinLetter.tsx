@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
@@ -19,10 +19,28 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
    const key = Object.keys(folder.bigFolder)
    let curArr = folder.bigFolder[`${folderTitle}`] || folder.bigFolder[`${folderType}`]
    const stateFolder: lettersInFolder[] = curArr.letters
-   const curId = (!isNaN(+`${id}`) && stateFolder.length >= +`${id}`) ? id : `${stateFolder.length}`
+
+   const keyMass: number[] = []
+   stateFolder.map(item => {
+      keyMass.push(item.id)
+   })
+
+   let curId = (!isNaN(+`${id}`) && stateFolder.length >= +`${id}`)
+      ?
+      id
+      :
+      keyMass.includes(+`${id}`)
+         ?
+         id
+         :
+         (folderTitle === 'Remote')
+            ?
+            `${stateFolder.slice(-1)[0].id}`
+            :
+            `${stateFolder.length}`
+
    const stateItem = stateFolder.filter(item => item.id.toString() === curId)
    const valuesArr = [...stateItem]
-
    const renderFullLetter = () => {
       let folderName = null
       key.forEach(key => {
@@ -40,9 +58,10 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
          if (folderName === null) {
             document.location.pathname = `${url}`
          }
-         if (folderName != null && num != curId) {
+         if (folderName != null && id != curId) {
             document.location.pathname = `${urlFolder}`
          }
+
       }
    }
 

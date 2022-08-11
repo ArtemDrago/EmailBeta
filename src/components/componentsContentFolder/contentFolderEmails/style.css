@@ -6,6 +6,7 @@
   border-radius: 12px;
   position: relative;
   height: 40px;
+  margin: 2.5px 0;
 }
 
 .value:hover {
@@ -24,11 +25,19 @@
   font-size: 26px;
   color: teal;
   font-style: italic;
-  width: 70%;
+  width: 60%;
   overflow: hidden;
   height: 100%;
   flex-wrap: wrap;
   padding: 0 5px;
+}
+
+.look {
+  width: 5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chect {
@@ -36,8 +45,28 @@
   height: 8px;
   border-radius: 50%;
   background-color: teal;
-  position: absolute;
-  left: 1px;
-  top: 37%;
+}
 
+.delite-container {
+  width: 5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delite-leter {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border-radius: 50%;
+  color: teal;
+}
+
+.delite-leter:hover {
+  color: rgba(0, 128, 128, 0.75);
+  background-color: rgba(128, 129, 129, 0.25);
 }

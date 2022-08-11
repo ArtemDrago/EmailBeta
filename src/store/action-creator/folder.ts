@@ -1,4 +1,8 @@
 
+export interface TypeBigFolder {
+  key: NewFolder[]
+}
+
 export interface lettersInFolder {
   id: number,
   value: string,
@@ -23,7 +27,7 @@ export enum FolderActionTypes {
   DELITE_FOLDER = "DELITE_FOLDER",
   CHANGE_FOLDER = "CHANGE_FOLDER",
   READ_ALL = "READ_ALL",
-  READ_MAIL = "READ_MAIL"
+  READ_MAIL = "READ_MAIL",
 }
 interface AddFolderAction {
   type: FolderActionTypes.ADD_FOLDER;
