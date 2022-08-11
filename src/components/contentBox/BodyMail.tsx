@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { store } from '../../store';
-import BodyContentMail from '../BodyContentMail/BodyContentMail';
+import BodyContentMail from '../componentsContentFolder/BodyContentMail/BodyContentMail';
 import SettingBox from '../createAndSearch/SettingBox';
 import FolderLetters from '../componentsContentFolder/FolderLetters/FolderLetters';
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';

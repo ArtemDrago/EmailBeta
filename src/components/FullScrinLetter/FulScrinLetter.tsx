@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
@@ -49,11 +49,13 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
    const changeReadLetter = (item: lettersInFolder) => {
       dispatch(readLetterAction([`${folderTitle}`, item]))
    }
+   useEffect(() => {
+      const item = folder.bigFolder[`${folderTitle}`].letters[+`${curId}` - 1]
+      changeReadLetter(item)
+   }, [])
 
    useMemo(() => {
       renderFullLetter()
-      const item = folder.bigFolder[`${folderTitle}`].letters[+`${curId}` - 1]
-      changeReadLetter(item)
    }, [])
 
    return (
