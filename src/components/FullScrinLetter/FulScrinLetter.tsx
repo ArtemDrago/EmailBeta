@@ -35,7 +35,10 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
          :
          (folderTitle === 'Remote')
             ?
-            `${stateFolder.slice(-1)[0].id}`
+            (curArr.letters.length > 0)
+               ?
+               `${stateFolder.slice(-1)[0].id}`
+               : '0'
             :
             `${stateFolder.length}`
 
@@ -52,8 +55,7 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
       const url = `/${folderType}/${curId}`
       const urlFolder = `/${folderName}/${curId}`
       const urlPath = document.location.pathname
-      const leng = document.location.pathname
-      const num = leng[leng.length - 1]
+
       if (url != urlPath) {
          if (folderName === null) {
             document.location.pathname = `${url}`
