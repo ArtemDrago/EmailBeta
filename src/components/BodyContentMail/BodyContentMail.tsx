@@ -4,21 +4,14 @@ import FolderLetters from '../componentsContentFolder/FolderLetters/FolderLetter
 import './style.css'
 
 interface BodyContentMailProps {
-   folderType: String,
-   curValueType: String,
+
 }
 
-const BodyContentMail: React.FC<BodyContentMailProps> = ({ folderType, curValueType }) => {
+const BodyContentMail: React.FC<BodyContentMailProps> = ({ }) => {
 
    return (
       <div className='container'>
          <Outlet />
-
-         <FolderLetters
-            curValueType={curValueType}
-            folderType={folderType}
-         />
-
       </div>
    );
 }

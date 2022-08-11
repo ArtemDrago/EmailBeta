@@ -54,12 +54,8 @@ const BodyMail: React.FC = () => {
                />
                <Route
                   path=''
-                  element={<BodyContentMail
-                     curValueType={curValueType}
-                     folderType={folderType}
-                  />}
+                  element={<BodyContentMail />}
                >
-
                   <Route
                      path='/'
                      element={<TitleBlockMail
