@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { NavLink, useMatch, useParams } from 'react-router-dom';
-import { useTypeSelector } from '../../hooks/useTypeSelector';
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import CastomFluters from '../castomFluters/CastomFluters';
 import './style.css'
 
@@ -13,7 +12,6 @@ interface FolderNameProps {
 const FolderName: React.FC<FolderNameProps> = ({ item, index, setFolder }) => {
 
     const changeArrLetter = (item: string, e: any) => {
-        localStorage.setItem('indexFolder', JSON.stringify(index))
         e.stopPropagation()
         setFolder(item)
     }
@@ -28,7 +26,6 @@ const FolderName: React.FC<FolderNameProps> = ({ item, index, setFolder }) => {
             {index > 4 ?
                 <CastomFluters
                     item={item}
-                    setFolder={setFolder}
                 />
                 : <></>
             }
@@ -39,10 +36,4 @@ const FolderName: React.FC<FolderNameProps> = ({ item, index, setFolder }) => {
 
 export default FolderName;
 
-function setFolderType(item: string) {
-    throw new Error('Function not implemented.');
-}
-function classnames(arg0: string, arg1: { 'change-class': boolean; }): string | undefined {
-    throw new Error('Function not implemented.');
-}
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import { useTypeSelector } from '../../hooks/useTypeSelector';
-import { lettersInFolder, NewFolder } from '../../store/action-creator/folder';
+import { NewFolder } from '../../store/action-creator/folder';
 import { addFolderAction, readAllAction } from '../../store/redusers/folderReduser';
 import MyModal from '../UI/modal/MyModal';
 

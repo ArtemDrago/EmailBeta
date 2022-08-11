@@ -1,18 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { lettersInFolder } from '../../store/action-creator/folder';
-import { readLetterAction } from '../../store/redusers/folderReduser';
+import { lettersInFolder } from '../../../store/action-creator/folder';
+import { readLetterAction } from '../../../store/redusers/folderReduser';
 import './style.css'
-
 
 interface ContentFolderEmailsProps {
     item: lettersInFolder,
-    index: number,
     folderType: String | any,
 }
 
-const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, index, folderType }) => {
+const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, folderType }) => {
 
     const dispatch = useDispatch()
     const changeReadLetter = (item: lettersInFolder) => {

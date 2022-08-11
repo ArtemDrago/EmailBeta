@@ -1,16 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { changeFolderAction, deliteFolderAction } from '../../store/redusers/folderReduser';
-import MyModal from '../UI/modal/MyModal';
+import { changeFolderAction, deliteFolderAction } from '../../../store/redusers/folderReduser';
+import MyModal from '../../UI/modal/MyModal';
 import './style.css'
 
 interface CastomFlutersProps {
-    setFolder: Function,
     item: string,
 }
 
-const CastomFluters: React.FC<CastomFlutersProps> = ({ item, setFolder }) => {
+const CastomFluters: React.FC<CastomFlutersProps> = ({ item }) => {
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch()
     const [valueInput, setValueInput] = useState('')
@@ -19,7 +18,7 @@ const CastomFluters: React.FC<CastomFlutersProps> = ({ item, setFolder }) => {
         e.preventDefault()
         e.stopPropagation()
         dispatch(deliteFolderAction(item))
-        setFolder('Inbox')
+        document.location.pathname = '/Inbox'
     }
     const changeTitleFolderVisible = (e: any) => {
         e.preventDefault()

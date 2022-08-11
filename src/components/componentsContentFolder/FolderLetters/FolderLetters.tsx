@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useTypeSelector } from '../../hooks/useTypeSelector';
-import { lettersInFolder } from '../../store/action-creator/folder';
+import { useTypeSelector } from '../../../hooks/useTypeSelector';
+import { lettersInFolder } from '../../../store/action-creator/folder';
 import ContentFolderEmails from '../contentFolderEmails/ContentFolderEmails';
 import './style.css'
 
@@ -20,6 +20,7 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType }) => {
    const isFolder = () => {
       if (folder.bigFolder[`${current}`] === undefined) {
          setFolderMass(folder.bigFolder.Inbox.letters)
+         document.location.pathname = '/Inbox'
       } else {
          setFolderMass(folder.bigFolder[`${current}`].letters)
       }
@@ -56,7 +57,6 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType }) => {
                {secondFolder.map((item: lettersInFolder, index: number) =>
                   <ContentFolderEmails
                      item={item}
-                     index={index}
                      key={index}
                      folderType={folderType}
                   />

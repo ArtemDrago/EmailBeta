@@ -4,9 +4,9 @@ import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { store } from '../../store';
 import BodyContentMail from '../BodyContentMail/BodyContentMail';
 import SettingBox from '../createAndSearch/SettingBox';
-import FolderLetters from '../FolderLetters/FolderLetters';
+import FolderLetters from '../componentsContentFolder/FolderLetters/FolderLetters';
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
-import TitleBlockMail from '../titleBlockMail/TitleBlockMail';
+import TitleBlockMail from '../componentsFoldersName/titleBlockMail/TitleBlockMail';
 import './BodyMail.css'
 
 const BodyMail: React.FC = () => {
@@ -33,6 +33,7 @@ const BodyMail: React.FC = () => {
    const setFolder = (item: string) => {
       setFolderType(item)
    }
+
    const totalKeys = { ...folder.bigFolder }
    const keys = Object.keys(totalKeys)
 
@@ -46,7 +47,7 @@ const BodyMail: React.FC = () => {
                />}
             >
                <Route
-                  path='/:folderType/:id'
+                  path='/:folderTitle/:id'
                   element={<FullScrinLetter
                      folderType={folderType}
                   />}

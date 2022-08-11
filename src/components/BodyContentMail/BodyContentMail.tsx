@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import FolderLetters from '../FolderLetters/FolderLetters';
+import FolderLetters from '../componentsContentFolder/FolderLetters/FolderLetters';
 import './style.css'
 
 interface BodyContentMailProps {
