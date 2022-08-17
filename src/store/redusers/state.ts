@@ -77,19 +77,19 @@ export const arrayLetters = {
             id: 1, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
          Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
          alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "Black", date: date, chect: false
+          doloremque.`, autor: "Black", date: date, chect: true
          },
          {
             id: 2, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
          Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
          alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "White", date: date, chect: false
+          doloremque.`, autor: "White", date: date, chect: true
          },
          {
             id: 3, value: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
          Officiis dolores nostrum, quis numquam nam, fugiat iure ut perspiciatis 
          alias iste natus minima magnam similique enim labore hic repellat omnis
-          doloremque.`, autor: "Pinc", date: date, chect: false
+          doloremque.`, autor: "Pinc", date: date, chect: true
          },
       ],
       changeFolder: false,

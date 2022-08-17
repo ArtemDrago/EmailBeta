@@ -8,11 +8,16 @@ import FolderLetters from '../componentsContentFolder/FolderLetters/FolderLetter
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
 import TitleBlockMail from '../componentsFoldersName/titleBlockMail/TitleBlockMail';
 import './BodyMail.css'
+import { lettersInFolder } from '../../store/action-creator/folder';
 
 const BodyMail: React.FC = () => {
    const { folder } = useTypeSelector(state => state.bigReduser)
    const [folderType, setFolderType] = React.useState<string>('Inbox')
    const [curValueType, setCurValueType] = useState('')
+   const [choiceLeters, setChoiceLetters] = useState(false)
+   const [choiceMail, setChoiceMail] = React.useState<Array<lettersInFolder>>([])
+   const [chectAllItems, setChectAllItems] = useState(false)
+   const [removeSelectionAll, setRemoveSelectionAll] = useState(false)
 
    const filterFolder = (str: string) => {
       setCurValueType(str)
@@ -37,6 +42,24 @@ const BodyMail: React.FC = () => {
    const totalKeys = { ...folder.bigFolder }
    const keys = Object.keys(totalKeys)
 
+   const setChoice = () => {
+      setChoiceLetters(!choiceLeters)
+      if (choiceLeters === false) {
+         setChoiceMail([])
+      }
+   }
+
+   const closeChoiseMenu = () => {
+      setChoiceLetters(false)
+   }
+
+   const setSwitchItemsState = () => {
+      setChectAllItems(!chectAllItems)
+   }
+   const getSwitchItemsState = () => {
+      setRemoveSelectionAll(!removeSelectionAll)
+   }
+
    return (
       <div className='wrapper'>
          <Routes>
@@ -44,6 +67,11 @@ const BodyMail: React.FC = () => {
                path='/'
                element={<SettingBox
                   filterFolder={filterFolder}
+                  setChoice={setChoice}
+                  choiceLeters={choiceLeters}
+                  choiceMail={choiceMail}
+                  setSwitchItemsState={setSwitchItemsState}
+                  getSwitchItemsState={getSwitchItemsState}
                />}
             >
                <Route
@@ -52,6 +80,7 @@ const BodyMail: React.FC = () => {
                      folderType={folderType}
                   />}
                />
+
                <Route
                   path=''
                   element={<BodyContentMail />}
@@ -68,7 +97,11 @@ const BodyMail: React.FC = () => {
                         path=':folderType'
                         element={<FolderLetters
                            curValueType={curValueType}
-                           folderType={folderType}
+                           choiceLeters={choiceLeters}
+                           closeChoiseMenu={closeChoiseMenu}
+                           setChoiceMail={setChoiceMail}
+                           chectAllItems={chectAllItems}
+                           removeSelectionAll={removeSelectionAll}
                         />
                         }
                      />

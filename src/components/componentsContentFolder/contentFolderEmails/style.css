@@ -14,7 +14,7 @@
 }
 
 .content-letter {
-  width: 15%;
+  width: 12.5%;
   font-size: 26px;
   color: teal;
   font-style: italic;
@@ -69,4 +69,18 @@
 .delite-leter:hover {
   color: rgba(0, 128, 128, 0.75);
   background-color: rgba(128, 129, 129, 0.25);
+}
+
+.check-box {
+  width: 5%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check {
+  width: 24px;
+  height: 24px;
+  padding: 10px;
 }

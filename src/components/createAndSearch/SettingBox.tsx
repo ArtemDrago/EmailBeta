@@ -1,41 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
-import { NewFolder } from '../../store/action-creator/folder';
-import { addFolderAction, readAllAction } from '../../store/redusers/folderReduser';
-import MyModal from '../UI/modal/MyModal';
+import { lettersInFolder } from '../../store/action-creator/folder';
+import { readAllAction } from '../../store/redusers/folderReduser';
+import SetingLeterMenu from './SetingLeterMenu/SetingLeterMenu';
+import SettingModal from './SettingModal/SettingModal';
 import './style.css'
 
 interface SettingBoxProp {
     filterFolder: Function,
+    setChoice: Function,
+    choiceLeters: boolean,
+    choiceMail: lettersInFolder[],
+    setSwitchItemsState: Function,
+    getSwitchItemsState: Function
 }
 
-const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
+const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder, setChoice, choiceLeters,
+    choiceMail, setSwitchItemsState, getSwitchItemsState }) => {
     const { folder } = useTypeSelector(state => state.bigReduser)
     const keys = Object.keys(folder.bigFolder)
     const [inputValue, setInputValue] = React.useState<string>('')
     const dispatch = useDispatch()
     const [visible, setVisible] = useState(false)
-    const [createInput, setCreateInput] = useState('')
 
-    const newFolder = () => {
-        const newFolder = {
-            id: new Date(),
-            letters: [],
-            changeFolder: true,
-        }
-        if (!/^[0-9]+$/.test(createInput) && createInput?.length != 0) {
-            const obj: NewFolder = {}
-            Object.assign(obj, { [`${createInput}`]: newFolder })
-            dispatch(addFolderAction(obj))
-        }
-        else {
-            alert('Folder name not specified')
-        }
-        setVisible(false)
-        setCreateInput('')
-    }
+
     useEffect(() => {
         filterFolder(inputValue)
     }, [inputValue])
@@ -70,33 +60,37 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder }) => {
                     >
                         Read all
                     </button>
+                    <button
+                        className={choiceLeters ? 'btn-create create-active' : 'btn-create '}
+                        onClick={() => setChoice()}
+                    >
+                        Select multiple
+                    </button>
+
                 </div>
-                <MyModal
+
+                <SettingModal
                     visible={visible}
                     setVisible={setVisible}
-                >
-                    <h3 className='title-change'>Create a new folder</h3>
-                    <input
-                        className='my-input'
-                        type="text"
-                        placeholder='Enter a folder name'
-                        value={createInput}
-                        onChange={e => setCreateInput(e.target.value)} />
-                    <button
-                        className='btn'
-                        onClick={() => newFolder()}
-                    >
-                        Create
-                    </button>
-                </MyModal>
+                />
 
                 <input
                     value={inputValue}
                     onChange={e => setInputValue(e.target.value)}
                     className='input-search'
                     type='text'
-                    placeholder="Search for emails..." />
+                    placeholder="Search for emails..."
+                />
             </div>
+            {choiceLeters ?
+                <SetingLeterMenu
+                    choiceMail={choiceMail}
+                    setSwitchItemsState={setSwitchItemsState}
+                    getSwitchItemsState={getSwitchItemsState}
+                    keys={keys}
+                />
+                : <></>
+            }
             <Outlet />
         </>
     );

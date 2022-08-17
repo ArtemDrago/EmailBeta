@@ -75,3 +75,9 @@
     background-color: rgba(128, 128, 128, 0.15);
     color: black;
 }
+
+.create-active {
+    background-color: teal;
+    color: white;
+    border: 1px solid black;
+}

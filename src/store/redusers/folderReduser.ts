@@ -3,6 +3,11 @@ import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../
 import { LeterAction, LeterActionTypes } from "../action-creator/leter"
 import { arrayLetters } from "./state"
 
+const idGenerate = (item: lettersInFolder) => {
+
+   return +new Date()
+}
+
 export const initialState: any = {
    bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
 }
@@ -41,7 +46,6 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
             });
          }
          return { ...state }
-
       case FolderActionTypes.READ_MAIL:
          const folderName = action.payload[0]
          const letter = action.payload[1]
@@ -50,6 +54,16 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
                item.chect = true
             }
          })
+         return { ...state }
+      case FolderActionTypes.READ_ITEMS:
+         const nameFolder = action.payload.folderType
+         const itemsForRead = action.payload.items
+         state.bigFolder[`${nameFolder}`].letters.forEach((item: lettersInFolder) => {
+            if (itemsForRead.includes(item)) {
+               item.chect = true
+            }
+         })
+
          return { ...state }
 
       case LeterActionTypes.DELITE_LETER:
@@ -60,8 +74,45 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
          const newId = new Date()
          const idMail = +newId
          leter.id = idMail
-         state.bigFolder.Remote.letters.push(leter)
-         console.log(state.bigFolder.Remote.letters)
+         if (folderCase !== 'Remote') {
+            state.bigFolder.Remote.letters.push(leter)
+         }
+         return { ...state }
+
+      case LeterActionTypes.DELITE_LETERS:
+         const caseFolder = action.payload.folderType
+         const lettersItem = action.payload.item
+         const filterLetters = state.bigFolder[`${caseFolder}`].letters.filter((item: lettersInFolder) => !lettersItem.includes(item))
+         state.bigFolder[`${caseFolder}`].letters = filterLetters
+
+         let currentId = +new Date()
+         lettersItem.forEach(item => {
+            item.id = currentId
+            currentId += 1000
+         })
+         if (caseFolder !== 'Remote') {
+            state.bigFolder.Remote.letters = [...state.bigFolder.Remote.letters, ...lettersItem]
+         }
+
+         return { ...state }
+      case LeterActionTypes.MOVE_TO_FOLDER:
+         const oldFolder = action.payload.oldFolder
+         const newFolder = action.payload.newFolder
+         const arrLeters = action.payload.items
+
+         let filterMails = state.bigFolder[`${oldFolder}`].letters.filter((item: lettersInFolder) => !arrLeters.includes(item))
+         state.bigFolder[`${oldFolder}`].letters = filterMails
+
+         let currentIdMail = +new Date()
+         let num = 1000
+         arrLeters.forEach(item => {
+            item.id = currentIdMail
+            currentIdMail += num
+            num += 223
+         })
+
+         state.bigFolder[`${newFolder}`].letters = [...state.bigFolder[`${newFolder}`].letters, ...arrLeters]
+
          return { ...state }
 
       default:
@@ -73,4 +124,8 @@ export const deliteFolderAction = (payload: string) => ({ type: FolderActionType
 export const changeFolderAction = (payload: string[]) => ({ type: FolderActionTypes.CHANGE_FOLDER, payload })
 export const readAllAction = () => ({ type: FolderActionTypes.READ_ALL })
 export const readLetterAction = (payload: (String | lettersInFolder)[]) => ({ type: FolderActionTypes.READ_MAIL, payload })
+export const readItemsAction = (payload: { folderType: String, items: lettersInFolder[] }) => ({ type: FolderActionTypes.READ_ITEMS, payload })
+
 export const deilteLeterAction = (payload: { folderType: String, item: lettersInFolder }) => ({ type: LeterActionTypes.DELITE_LETER, payload })
+export const deilteLetersAction = (payload: { folderType: String, item: lettersInFolder[] }) => ({ type: LeterActionTypes.DELITE_LETERS, payload })
+export const moveToFolderLetersAction = (payload: { oldFolder: String, newFolder: String, items: lettersInFolder[] }) => ({ type: LeterActionTypes.MOVE_TO_FOLDER, payload })

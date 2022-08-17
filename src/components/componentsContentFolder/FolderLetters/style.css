@@ -1,6 +1,8 @@
 .value-folder {
    min-width: 70%;
    padding: 10px;
+   overflow: auto;
+   height: 450px;
 }
 
 .not-content {
