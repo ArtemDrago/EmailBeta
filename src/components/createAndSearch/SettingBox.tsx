@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
@@ -14,11 +15,12 @@ interface SettingBoxProp {
     choiceLeters: boolean,
     choiceMail: lettersInFolder[],
     setSwitchItemsState: Function,
-    getSwitchItemsState: Function
+    getSwitchItemsState: Function,
+    setChangeSelectFilter: Function,
 }
 
 const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder, setChoice, choiceLeters,
-    choiceMail, setSwitchItemsState, getSwitchItemsState }) => {
+    choiceMail, setSwitchItemsState, getSwitchItemsState, setChangeSelectFilter }) => {
     const { folder } = useTypeSelector(state => state.bigReduser)
     const keys = Object.keys(folder.bigFolder)
     const [inputValue, setInputValue] = React.useState<string>('')
@@ -46,7 +48,7 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder, setChoice, choiceL
     return (
         <>
             <div className='setting'>
-                <div>
+                <div className='setting-buttonbox'>
                     <button
                         className='btn-create'
                         onClick={() => setVisible(true)}
@@ -66,6 +68,15 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder, setChoice, choiceL
                     >
                         Select multiple
                     </button>
+                    <select
+                        className='filter-select'
+                        onChange={(e) => setChangeSelectFilter(e.target.value)}
+                        defaultValue='All'
+                    >
+                        <option value='All'>All</option>
+                        <option value='Noted'>Noted</option>
+                        <option value='Not noted'>Not noted</option>
+                    </select>
 
                 </div>
 

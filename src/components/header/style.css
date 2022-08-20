@@ -4,7 +4,9 @@
     padding: 10px 0;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     background-color: rgba(0, 128, 128, 0.15);
+    position: relative;
 }
 
 .logo {
@@ -16,4 +18,24 @@
     font-style: italic;
     color: teal;
     cursor: default;
+}
+
+.btn-control {
+    width: 120px;
+    height: 40px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid teal;
+    margin-right: 25px;
+    border-radius: 12px;
+    color: black;
+    font-size: 20px;
+}
+
+.btn-control:hover {
+    border: 1px solid black;
+    color: white;
+    background-color: rgba(0, 128, 128, 0.75);
 }

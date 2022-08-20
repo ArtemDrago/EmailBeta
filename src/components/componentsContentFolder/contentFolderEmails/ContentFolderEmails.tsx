@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { lettersInFolder } from '../../../store/action-creator/folder';
-import { deilteLeterAction, readLetterAction } from '../../../store/redusers/folderReduser';
+import { deilteLeterAction, highlightAction, readLetterAction } from '../../../store/redusers/folderReduser';
 import './style.css'
 
 interface ContentFolderEmailsProps {
@@ -34,6 +34,15 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, folderT
 
     const addLeterToChoiceMail = (item: lettersInFolder) => {
         addLeterMail(item)
+    }
+
+    const highlightMail = (e: any, item: lettersInFolder) => {
+        e.preventDefault()
+        e.stopPropagation()
+        dispatch(highlightAction({
+            folder: folderType,
+            item: item
+        }))
     }
 
     return (
@@ -70,6 +79,24 @@ const ContentFolderEmails: React.FC<ContentFolderEmailsProps> = ({ item, folderT
                 </div>
                 <div className='content-letter'> {item.autor} </div>
                 <div className='content-letter_text'> {item.value.substring(0, 50)} </div>
+                <button
+                    className='highlight'
+                    onClick={(e) => highlightMail(e, item)}
+                >
+                    {item.label ?
+                        <div className='flag-icon'>
+                            <FontAwesomeIcon
+                                icon={['fas', 'bookmark']}
+                            />
+                        </div>
+                        :
+                        <div className='flag-icon'>
+                            <FontAwesomeIcon
+                                icon={['far', 'bookmark']}
+                            />
+                        </div>
+                    }
+                </button>
                 <div className='content-letter'> {item.date} </div>
                 <div className='delite-container'>
                     <button

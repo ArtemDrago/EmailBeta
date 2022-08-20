@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { store } from '../../store';
@@ -9,6 +9,9 @@ import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
 import TitleBlockMail from '../componentsFoldersName/titleBlockMail/TitleBlockMail';
 import './BodyMail.css'
 import { lettersInFolder } from '../../store/action-creator/folder';
+import Registrate from '../registrate/Registrate';
+import RequireAuth from '../hoc/RequireAuth';
+import AuthProvider from '../../context/AuthProvider';
 
 const BodyMail: React.FC = () => {
    const { folder } = useTypeSelector(state => state.bigReduser)
@@ -18,6 +21,8 @@ const BodyMail: React.FC = () => {
    const [choiceMail, setChoiceMail] = React.useState<Array<lettersInFolder>>([])
    const [chectAllItems, setChectAllItems] = useState(false)
    const [removeSelectionAll, setRemoveSelectionAll] = useState(false)
+   const [changeSelectFilter, setChangeSelectFilter] = useState('All')
+   const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('user')!))
 
    const filterFolder = (str: string) => {
       setCurValueType(str)
@@ -28,11 +33,16 @@ const BodyMail: React.FC = () => {
       if (urlPath == '/') {
          document.location.pathname = '/Inbox'
       }
+
    }
 
    useMemo(() => {
       localStorage.setItem('state', JSON.stringify(store.getState()));
       rerenderUrl()
+      localStorage.setItem('user', JSON.stringify({
+         user: userData.user || '',
+         password: userData.password || ''
+      }));
    }, [])
 
    const setFolder = (item: string) => {
@@ -62,62 +72,75 @@ const BodyMail: React.FC = () => {
 
    return (
       <div className='wrapper'>
-         <Routes>
-            <Route
-               path='/'
-               element={<SettingBox
-                  filterFolder={filterFolder}
-                  setChoice={setChoice}
-                  choiceLeters={choiceLeters}
-                  choiceMail={choiceMail}
-                  setSwitchItemsState={setSwitchItemsState}
-                  getSwitchItemsState={getSwitchItemsState}
-               />}
-            >
+         <AuthProvider>
+            <Routes>
                <Route
-                  path='/:folderTitle/:id'
-                  element={<FullScrinLetter
-                     folderType={folderType}
+                  path='/'
+                  element={<SettingBox
+                     filterFolder={filterFolder}
+                     setChoice={setChoice}
+                     choiceLeters={choiceLeters}
+                     choiceMail={choiceMail}
+                     setSwitchItemsState={setSwitchItemsState}
+                     getSwitchItemsState={getSwitchItemsState}
+                     setChangeSelectFilter={setChangeSelectFilter}
                   />}
-               />
-
-               <Route
-                  path=''
-                  element={<BodyContentMail />}
                >
                   <Route
-                     path='/'
-                     element={<TitleBlockMail
-                        keys={keys}
-                        setFolder={setFolder}
-                     />
+                     path='/:folderTitle/:id'
+                     element={<FullScrinLetter
+                        folderType={folderType}
+                     />}
+                  />
+
+                  <Route
+                     path=''
+                     element={
+                        <RequireAuth>
+                           <BodyContentMail />
+                        </RequireAuth>
                      }
                   >
                      <Route
-                        path=':folderType'
-                        element={<FolderLetters
-                           curValueType={curValueType}
-                           choiceLeters={choiceLeters}
-                           closeChoiseMenu={closeChoiseMenu}
-                           setChoiceMail={setChoiceMail}
-                           chectAllItems={chectAllItems}
-                           removeSelectionAll={removeSelectionAll}
+                        path='/'
+                        element={<TitleBlockMail
+                           keys={keys}
+                           setFolder={setFolder}
                         />
                         }
-                     />
+                     >
+                        <Route
+                           path=':folderType'
+                           element={<FolderLetters
+                              curValueType={curValueType}
+                              choiceLeters={choiceLeters}
+                              closeChoiseMenu={closeChoiseMenu}
+                              setChoiceMail={setChoiceMail}
+                              chectAllItems={chectAllItems}
+                              removeSelectionAll={removeSelectionAll}
+                              changeSelectFilter={changeSelectFilter}
+                           />
+                           }
+                        />
 
-                     <Route
-                        path='*'
-                        element={<Navigate
-                           to={`/Inbox`}
-                        />}
-                     />
+                        <Route
+                           path='*'
+                           element={<Navigate
+                              to={`/Inbox`}
+                           />}
+                        />
+                     </Route>
                   </Route>
                </Route>
-            </Route>
 
-         </Routes>
-      </div>
+               <Route
+                  path='/registrate'
+                  element={<Registrate
+                  />}
+               />
+            </Routes>
+         </AuthProvider>
+      </div >
    );
 }
 

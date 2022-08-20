@@ -11,18 +11,18 @@ interface FolderLettersProps {
    closeChoiseMenu: Function,
    setChoiceMail: Function,
    chectAllItems: boolean,
-   removeSelectionAll: boolean
+   removeSelectionAll: boolean,
+   changeSelectFilter: String,
 }
 
 const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType, choiceLeters, closeChoiseMenu,
-   setChoiceMail, chectAllItems, removeSelectionAll }) => {
+   setChoiceMail, chectAllItems, removeSelectionAll, changeSelectFilter }) => {
    const { folderType } = useParams()
    const current = folderType || 'Inbox'
    const { folder } = useTypeSelector(state => state.bigReduser)
    const [folderMass, setFolderMass] = React.useState<Array<lettersInFolder>>([])
    const [secondFolder, setSecondFolder] = useState(folderMass)
    const [currentArr, setcurrentArr] = React.useState<Array<lettersInFolder>>([])
-
 
    const isFolder = () => {
       if (folder.bigFolder[`${current}`] === undefined) {
@@ -48,6 +48,23 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType, choiceLeter
       setSecondFolder(folderMass)
    }, [folderMass])
 
+   //create custom hook sorted and filter
+   const sortedFunc = () => {
+      if (changeSelectFilter === 'Noted') {
+         setSecondFolder(folderMass.filter(item => item.label === true))
+      } else if (changeSelectFilter === 'Not noted') {
+         setSecondFolder(folderMass.filter(item => item.label === false))
+      } else {
+         setSecondFolder(folderMass)
+      }
+   }
+   const filterFunc = () => {
+      if (curValueType) {
+         return setSecondFolder(folderMass.filter((folder) =>
+            folder.value.toLowerCase().includes(curValueType.toLowerCase())
+         ))
+      }
+   }
    useMemo(() => {
       setSecondFolder(folderMass)
       if (curValueType) {
@@ -55,9 +72,15 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType, choiceLeter
             folder.value.toLowerCase().includes(curValueType.toLowerCase())
          ))
       }
-      return secondFolder
-   }, [curValueType, current])
+      sortedFunc()
+   }, [curValueType])
 
+   useEffect(() => {
+      sortedFunc()
+      filterFunc()
+   }, [changeSelectFilter, folderMass, folder])
+
+   //----------------------------------------------
    const addLeterMail = (item: lettersInFolder) => {
       const curArrItems = [...currentArr, item]
       if (currentArr.includes(item)) {
@@ -75,6 +98,9 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType, choiceLeter
    useEffect(() => {
       setChoiceMail(currentArr)
    }, [currentArr])
+   useEffect(() => {
+      setChoiceMail(secondFolder)
+   }, [secondFolder])
 
    function check(field: any, flag: number) {
       if (flag == 1) {
@@ -91,7 +117,7 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType, choiceLeter
    useEffect(() => {
       let checkList = document.querySelectorAll('.check')
       check(checkList, 1)
-      setcurrentArr(folderMass)
+      setcurrentArr(secondFolder)
    }, [chectAllItems])
 
    useEffect(() => {

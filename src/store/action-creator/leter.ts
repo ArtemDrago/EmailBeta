@@ -1,11 +1,12 @@
 import { lettersInFolder } from "./folder";
 
-export type LeterAction = DeliteLeterAction | DeliteLetersAction | MoveToFolderAction
+export type LeterAction = DeliteLeterAction | DeliteLetersAction | MoveToFolderAction | HighLightAction
 
 export enum LeterActionTypes {
    DELITE_LETER = "DELITE_LETER",
    DELITE_LETERS = "DELITE_LETERS",
-   MOVE_TO_FOLDER = "MOVE_TO_FOLDER"
+   MOVE_TO_FOLDER = "MOVE_TO_FOLDER",
+   HIGHLIGHT = "HIGHLIGHT"
 }
 export interface DeliteLeterAction {
    type: LeterActionTypes.DELITE_LETER;
@@ -27,5 +28,12 @@ export interface MoveToFolderAction {
       oldFolder: String,
       newFolder: String,
       items: lettersInFolder[]
+   }
+}
+export interface HighLightAction {
+   type: LeterActionTypes.HIGHLIGHT,
+   payload: {
+      folder: String,
+      item: lettersInFolder
    }
 }

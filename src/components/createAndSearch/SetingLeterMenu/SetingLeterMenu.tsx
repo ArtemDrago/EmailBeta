@@ -12,13 +12,14 @@ interface SetingLeterMenuProps {
    keys: string[]
 }
 
-const SetingLeterMenu: React.FC<SetingLeterMenuProps> = ({ choiceMail, setSwitchItemsState, getSwitchItemsState, keys }) => {
+const SetingLeterMenu: React.FC<SetingLeterMenuProps> = ({ choiceMail, setSwitchItemsState,
+   getSwitchItemsState, keys }) => {
 
    const { folderType } = useParams()
    const current = folderType || 'Inbox'
    const dispatch = useDispatch()
    const filterKeys = keys.filter(item => item !== "Remote" && item !== "Inbox" && item !== current)
-   const [moveToFolder, setMoveToFolder] = useState('Outgoing')
+   const [moveToFolder, setMoveToFolder] = useState('')
 
    filterKeys.unshift('select folder')
 
@@ -53,6 +54,7 @@ const SetingLeterMenu: React.FC<SetingLeterMenuProps> = ({ choiceMail, setSwitch
    }
 
    const changeMoveTo = () => {
+
       dispatch(moveToFolderLetersAction({
          oldFolder: current,
          newFolder: moveToFolder,

@@ -3,11 +3,6 @@ import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../
 import { LeterAction, LeterActionTypes } from "../action-creator/leter"
 import { arrayLetters } from "./state"
 
-const idGenerate = (item: lettersInFolder) => {
-
-   return +new Date()
-}
-
 export const initialState: any = {
    bigFolder: JSON.parse(localStorage.getItem('state')!) || arrayLetters
 }
@@ -115,6 +110,17 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
 
          return { ...state }
 
+      case LeterActionTypes.HIGHLIGHT:
+         const nameFolderMail = action.payload.folder
+         const mailItem = action.payload.item
+
+         state.bigFolder[`${nameFolderMail}`].letters.forEach((item: lettersInFolder) => {
+            if (item === mailItem) {
+               item.label = !item.label
+            }
+         })
+         return { ...state }
+
       default:
          return state
    }
@@ -129,3 +135,4 @@ export const readItemsAction = (payload: { folderType: String, items: lettersInF
 export const deilteLeterAction = (payload: { folderType: String, item: lettersInFolder }) => ({ type: LeterActionTypes.DELITE_LETER, payload })
 export const deilteLetersAction = (payload: { folderType: String, item: lettersInFolder[] }) => ({ type: LeterActionTypes.DELITE_LETERS, payload })
 export const moveToFolderLetersAction = (payload: { oldFolder: String, newFolder: String, items: lettersInFolder[] }) => ({ type: LeterActionTypes.MOVE_TO_FOLDER, payload })
+export const highlightAction = (payload: { folder: String, item: lettersInFolder }) => ({ type: LeterActionTypes.HIGHLIGHT, payload })
