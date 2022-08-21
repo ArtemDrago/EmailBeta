@@ -8,8 +8,8 @@ interface RequireAuthProps {
 const RequireAuth: React.FC<RequireAuthProps> = ({ children }) => {
    const location = useLocation()
    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('user')!))
-
-   if (!userData) {
+   const [name, setName] = useState(userData.user || null)
+   if (!name) {
       return <Navigate to={'/registrate'} state={{ from: location }} />
    }
 

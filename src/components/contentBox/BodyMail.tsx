@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { store } from '../../store';
@@ -39,10 +39,12 @@ const BodyMail: React.FC = () => {
    useMemo(() => {
       localStorage.setItem('state', JSON.stringify(store.getState()));
       rerenderUrl()
-      localStorage.setItem('user', JSON.stringify({
-         user: userData.user || '',
-         password: userData.password || ''
-      }));
+      if (!userData) {
+         localStorage.setItem('user', JSON.stringify({
+            user: '',
+            password: ''
+         }));
+      }
    }, [])
 
    const setFolder = (item: string) => {
