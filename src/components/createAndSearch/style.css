@@ -81,8 +81,8 @@
 }
 
 .create-active {
-    background-color: teal;
-    color: white;
+    background-color: rgba(0, 128, 128, 0.75);
+    color: white !important;
     border: 1px solid black;
 }
 
@@ -106,4 +106,22 @@
     background-color: rgba(0, 128, 128, 0.75);
     color: white;
 
+}
+
+.my-node-enter {
+    opacity: 0;
+}
+
+.my-node-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms;
+}
+
+.my-node-exit {
+    opacity: 1;
+}
+
+.my-node-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms;
 }

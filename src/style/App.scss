@@ -5,6 +5,7 @@
     overflow: auto;
     background-color: var(--background-color) !important;
     color: var(--color) !important;
+    transition: background-color 1s linear, color 2s linear;
 }
 
 * {
@@ -13,6 +14,7 @@
     text-decoration: none;
     font-style: italic;
     color: var(--color) !important;
+    transition: color 1s linear;
 }
 
 select {
@@ -31,24 +33,39 @@ button {
     color: var(--color);
     background-color: var(----button-background-color);
     cursor: pointer;
-
+    transition: color 1s, background-color 1s;
 }
 
 input {
     background-color: var(--input-background-color);
+    transition: all 1s ease 0;
 
     &::placeholder {
         border-color: var(--button-border-color) !important;
         color: var(--color) !important;
+        transition: border-color 1s, color 1s;
     }
 }
 
 .btn-control {
     color: var(--color);
+    transition: color 1s linear;
 }
 
 .setting-header {
     background-color: var(--background-user);
+    transition: background-color 1s linear;
+}
+
+select {
+    background-color: var(--select-background) !important;
+    transition: background-color 3s linear;
+}
+
+.myModalContent {
+    background: var(--modal-background) !important;
+    color: var(--color) !important;
+    transition: color 1s linear;
 }
 
 html[data-theme='dark'] {
@@ -61,7 +78,9 @@ html[data-theme='dark'] {
     --input-background-color: #7c7c7c;
     --input-border-color: #ba8fc2;
     --background-user: #58877f;
+    --modal-background: black;
 
+    --select-background: gray;
     --background-color: #332a24;
     --icon-color: #ba8fc2;
 }
@@ -72,6 +91,7 @@ html[data-theme='light'] {
     --button-border-color: teal;
     --color: teal;
     --background-user: #ace0d7;
+    --select-background: rgba(0, 128, 128, 0.25);
 
     --input-text-color: #252525;
     --input-placeholder-text-color: #a7a7a7;

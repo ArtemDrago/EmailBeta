@@ -41,10 +41,6 @@ const SettingUser: React.FC<SettingUserProps> = ({ offVision }) => {
             </div>
          </div>
 
-         {/* <form onSubmit={(e) => func(e)}>
-            <input type="file" name="photo" multiple accept="image/*,image/jpeg" />
-            <button type='submit'>lol</button>
-         </form> */}
          <hr className='line' />
          <h3 className='title-them'>
             Change them

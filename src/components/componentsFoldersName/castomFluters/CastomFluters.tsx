@@ -47,7 +47,9 @@ const CastomFluters: React.FC<CastomFlutersProps> = ({ item }) => {
                 visible={visible}
                 setVisible={setVisible}
             >
-                <h3 className='title-change'>Change folder name</h3>
+                <h3 className='title-change'>
+                    Change folder name
+                </h3>
                 <input
                     className='my-input'
                     type="text"

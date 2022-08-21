@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../store/action-creator/folder';
 import { readAllAction } from '../../store/redusers/folderReduser';
@@ -93,15 +94,20 @@ const SettingBox: React.FC<SettingBoxProp> = ({ filterFolder, setChoice, choiceL
                     placeholder="Search for emails..."
                 />
             </div>
-            {choiceLeters ?
+            <CSSTransition
+                in={choiceLeters}
+                timeout={1000}
+                classNames="my-node"
+                mountOnEnter
+                unmountOnExit
+            >
                 <SetingLeterMenu
                     choiceMail={choiceMail}
                     setSwitchItemsState={setSwitchItemsState}
                     getSwitchItemsState={getSwitchItemsState}
                     keys={keys}
                 />
-                : <></>
-            }
+            </CSSTransition>
             <Outlet />
         </>
     );
