@@ -3,15 +3,16 @@
     height: 100%;
     margin: 0;
     overflow: auto;
+    background-color: var(--background-color) !important;
+    color: var(--color) !important;
 }
 
 * {
     margin: 0;
     padding: 0;
     text-decoration: none;
-    color: inherit;
     font-style: italic;
-    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+    color: var(--color) !important;
 }
 
 select {
@@ -27,7 +28,56 @@ button {
     padding: 0;
     border: none;
     font: inherit;
-    color: inherit;
-    background-color: transparent;
+    color: var(--color);
+    background-color: var(----button-background-color);
     cursor: pointer;
+
+}
+
+input {
+    background-color: var(--input-background-color);
+
+    &::placeholder {
+        border-color: var(--button-border-color) !important;
+        color: var(--color) !important;
+    }
+}
+
+.btn-control {
+    color: var(--color);
+}
+
+.setting-header {
+    background-color: var(--background-user);
+}
+
+html[data-theme='dark'] {
+    --button-text-color: #ffffff;
+    --button-background-color: rgba(128, 128, 128, 0.75);
+    --button-border-color: white;
+    --color: rgba(252, 251, 251, 0.75);
+    --input-text-color: #ffffff;
+    --input-placeholder-text-color: #dddddd;
+    --input-background-color: #7c7c7c;
+    --input-border-color: #ba8fc2;
+    --background-user: #58877f;
+
+    --background-color: #332a24;
+    --icon-color: #ba8fc2;
+}
+
+html[data-theme='light'] {
+    --button-text-color: #252525;
+    --button-background-color: rgba(128, 128, 128, 0.75);
+    --button-border-color: teal;
+    --color: teal;
+    --background-user: #ace0d7;
+
+    --input-text-color: #252525;
+    --input-placeholder-text-color: #a7a7a7;
+    --input-background-color: #ffffff;
+    --input-border-color: #4e005c;
+
+    --background-color: white;
+    --icon-color: #4e005c;
 }
