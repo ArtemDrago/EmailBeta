@@ -38,3 +38,22 @@
     color: white;
     background-color: rgba(0, 128, 128, 0.75);
 }
+
+.my-menu-enter {
+    opacity: 0;
+}
+
+.my-menu-enter-active {
+    opacity: 1;
+    transition: opacity 2000ms;
+}
+
+.my-menu-exit {
+    opacity: 1;
+    transition: opacity 2000ms;
+}
+
+.my-menu-exit-active {
+    opacity: 0;
+    transition: opacity 2000ms;
+}

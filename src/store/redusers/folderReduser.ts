@@ -34,6 +34,7 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
          const newArr = j.reduce((acc, n, i) => ({ ...acc, [n]: value[i] }), {})
          state.bigFolder = newArr
          return { ...state }
+
       case FolderActionTypes.READ_ALL:
          for (let i in state.bigFolder) {
             state.bigFolder[i].letters.forEach((elem: lettersInFolder) => {
@@ -121,6 +122,14 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
          })
          return { ...state }
 
+      case LeterActionTypes.NEW_DRAFT:
+         state.bigFolder.Drafts.letters = [...state.bigFolder.Drafts.letters, action.payload]
+         return { ...state }
+
+      case LeterActionTypes.NEW_OUTGOIN:
+         state.bigFolder.Outgoing.letters = [...state.bigFolder.Outgoing.letters, action.payload]
+         return { ...state }
+
       default:
          return state
    }
@@ -136,3 +145,6 @@ export const deilteLeterAction = (payload: { folderType: String, item: lettersIn
 export const deilteLetersAction = (payload: { folderType: String, item: lettersInFolder[] }) => ({ type: LeterActionTypes.DELITE_LETERS, payload })
 export const moveToFolderLetersAction = (payload: { oldFolder: String, newFolder: String, items: lettersInFolder[] }) => ({ type: LeterActionTypes.MOVE_TO_FOLDER, payload })
 export const highlightAction = (payload: { folder: String, item: lettersInFolder }) => ({ type: LeterActionTypes.HIGHLIGHT, payload })
+
+export const addDraftLetterAction = (payload: lettersInFolder) => ({ type: LeterActionTypes.NEW_DRAFT, payload })
+export const addOutgoinLetterAction = (payload: lettersInFolder) => ({ type: LeterActionTypes.NEW_OUTGOIN, payload })

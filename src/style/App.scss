@@ -15,6 +15,7 @@
     font-style: italic;
     color: var(--color) !important;
     transition: color 1s linear;
+    outline: none;
 }
 
 select {
@@ -68,6 +69,15 @@ select {
     transition: color 1s linear;
 }
 
+.btn-write {
+    background-color: var(--write-bg-color);
+
+    &:hover {
+        background-color: var(--write-bg-color-hover);
+    }
+}
+
+
 html[data-theme='dark'] {
     --button-text-color: #ffffff;
     --button-background-color: rgba(128, 128, 128, 0.75);
@@ -75,10 +85,13 @@ html[data-theme='dark'] {
     --color: rgba(252, 251, 251, 0.75);
     --input-text-color: #ffffff;
     --input-placeholder-text-color: #dddddd;
-    --input-background-color: #7c7c7c;
+    --input-background-color: #919191;
     --input-border-color: #ba8fc2;
     --background-user: #58877f;
     --modal-background: black;
+
+    --write-bg-color: #58877f;
+    --write-bg-color-hover: #52807952;
 
     --select-background: gray;
     --background-color: #332a24;
@@ -92,6 +105,9 @@ html[data-theme='light'] {
     --color: teal;
     --background-user: #ace0d7;
     --select-background: rgba(0, 128, 128, 0.25);
+
+    --write-bg-color: #324d4952;
+    --write-bg-color-hover: #8ca29f52;
 
     --input-text-color: #252525;
     --input-placeholder-text-color: #a7a7a7;

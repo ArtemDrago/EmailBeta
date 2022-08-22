@@ -12,6 +12,7 @@ import { lettersInFolder } from '../../store/action-creator/folder';
 import Registrate from '../registrate/Registrate';
 import RequireAuth from '../hoc/RequireAuth';
 import AuthProvider from '../../context/AuthProvider';
+import WriteLetter from '../writeLetter/WriteLetter';
 
 const BodyMail: React.FC = () => {
    const { folder } = useTypeSelector(state => state.bigReduser)
@@ -93,6 +94,10 @@ const BodyMail: React.FC = () => {
                      element={<FullScrinLetter
                         folderType={folderType}
                      />}
+                  />
+                  <Route
+                     path='/write'
+                     element={<WriteLetter />}
                   />
 
                   <Route

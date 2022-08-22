@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
 import SettingUser from './settingAcc/SettingUser';
 import './style.css'
 
@@ -31,13 +32,18 @@ const HeaderMail: React.FC = () => {
             }
 
          </div>
-         {visionUserDate ?
+         <CSSTransition
+            in={visionUserDate}
+            timeout={1000}
+            classNames="my-menu"
+            mountOnEnter
+            unmountOnExit
+         >
             <SettingUser
                offVision={offVision}
             />
-            :
-            <></>
-         }
+         </CSSTransition>
+
       </>
    );
 }

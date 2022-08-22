@@ -1,0 +1,21 @@
+.name-folder {
+    min-width: 27.5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 10px;
+}
+
+.btn-write {
+    width: 80%;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}

@@ -4,7 +4,7 @@ import { useLetters } from '../../../hooks/useFilterAndSearch';
 import { useTypeSelector } from '../../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../../store/action-creator/folder';
 import ContentFolderEmails from '../contentFolderEmails/ContentFolderEmails';
-import './style.css'
+import './style.scss'
 
 interface FolderLettersProps {
    choiceLeters: boolean,
@@ -101,6 +101,7 @@ const FolderLetters: React.FC<FolderLettersProps> = ({ curValueType, choiceLeter
          {secondFolder.length > 0 ?
 
             <div className='email-box'>
+
                {secondFolder.map((item: lettersInFolder, index: number) =>
                   <ContentFolderEmails
                      item={item}

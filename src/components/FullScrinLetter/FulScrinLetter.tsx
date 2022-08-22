@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../store/action-creator/folder';
-import { readLetterAction } from '../../store/redusers/folderReduser';
-import './style.css'
+import { addOutgoinLetterAction, readLetterAction } from '../../store/redusers/folderReduser';
+import './style.scss'
 
 interface FullScrinLetterProps {
    folderType: String
@@ -79,25 +79,52 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
       renderFullLetter()
    }, [])
 
+   const addToOutgoinFullscrin = () => {
+      const userLetterOut: lettersInFolder = {
+         id: +new Date(),
+         value: valuesArr[0].value,
+         autor: valuesArr[0].autor,
+         date: new Date().toLocaleDateString(),
+         chect: true,
+         label: false,
+      }
+      dispatch(addOutgoinLetterAction(userLetterOut))
+      alert('Sent successfully')
+   }
+
    return (
       <div className='full-scrin'>
-         <button
-            className='close-letter'
-            onClick={() => navigate(`/${folderTitle}`)}
-         >
-            <FontAwesomeIcon icon={['fas', 'xmark']} />
-         </button>
+         <div className='btn-full'>
+            <button
+               className='close-letter'
+               onClick={() => navigate(`/${folderTitle}`)}
+            >
+               <FontAwesomeIcon icon={['fas', 'xmark']} />
+            </button>
+            {folderType === 'Drafts'
+               ?
+               <button
+                  className='btn-sent'
+                  onClick={() => addToOutgoinFullscrin()}
+               >
+                  Sent
+               </button>
+               : <></>
+            }
+         </div>
          <section className='full-content'>
             {valuesArr[0] ?
                <>
-                  <div className='content'>
-                     {valuesArr[0].autor}
-                  </div>
-                  <div className='content text'>
-                     {valuesArr[0].value}
-                  </div>
-                  <div className='content'>
-                     {valuesArr[0].date}
+                  <div className='full-content'>
+                     <div className='content'>
+                        {valuesArr[0].autor}
+                     </div>
+                     <div className='content text'>
+                        {valuesArr[0].value}
+                     </div>
+                     <div className='content'>
+                        {valuesArr[0].date}
+                     </div>
                   </div>
                </>
                : <div className='content text'>

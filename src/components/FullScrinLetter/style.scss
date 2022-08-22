@@ -14,6 +14,15 @@
    overflow: hidden;
 }
 
+.btn-full {
+   width: 98.5%;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 10px;
+}
+
 .content {
    font-style: italic;
    font-size: 30px;
@@ -53,4 +62,20 @@
    color: white;
    background: rgba(0, 128, 128, 0.205);
    border: 1px solid rgb(0, 128, 128);
+}
+
+.btn-sent {
+   width: 100px;
+   height: 30px;
+   padding: 10px;
+   border: 2px solid var(--border-hover-input);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 12px;
+   margin-right: 25px;
+
+   &:hover {
+      background-color: var(--bg-hover);
+   }
 }

@@ -1,12 +1,14 @@
 import { lettersInFolder } from "./folder";
 
-export type LeterAction = DeliteLeterAction | DeliteLetersAction | MoveToFolderAction | HighLightAction
+export type LeterAction = DeliteLeterAction | DeliteLetersAction | MoveToFolderAction | HighLightAction | addNewDraftAction | addNewOutgoinAction
 
 export enum LeterActionTypes {
    DELITE_LETER = "DELITE_LETER",
    DELITE_LETERS = "DELITE_LETERS",
    MOVE_TO_FOLDER = "MOVE_TO_FOLDER",
-   HIGHLIGHT = "HIGHLIGHT"
+   HIGHLIGHT = "HIGHLIGHT",
+   NEW_DRAFT = "NEW_DRAFT",
+   NEW_OUTGOIN = "NEW_OUTGOIN"
 }
 export interface DeliteLeterAction {
    type: LeterActionTypes.DELITE_LETER;
@@ -36,4 +38,13 @@ export interface HighLightAction {
       folder: String,
       item: lettersInFolder
    }
+}
+
+export interface addNewDraftAction {
+   type: LeterActionTypes.NEW_DRAFT,
+   payload: lettersInFolder
+}
+export interface addNewOutgoinAction {
+   type: LeterActionTypes.NEW_OUTGOIN,
+   payload: lettersInFolder
 }
