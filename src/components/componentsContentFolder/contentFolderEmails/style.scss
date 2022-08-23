@@ -16,15 +16,11 @@
 .content-letter {
   width: 12.5%;
   font-size: 26px;
-  color: teal;
-  font-style: italic;
   height: 100%;
 }
 
 .content-letter_text {
   font-size: 26px;
-  color: teal;
-  font-style: italic;
   width: 55%;
   overflow: hidden;
   height: 100%;
@@ -64,11 +60,11 @@
   font-size: 18px;
   border-radius: 50%;
   color: teal;
-}
 
-.delite-leter:hover {
-  color: rgba(0, 128, 128, 0.75);
-  background-color: rgba(128, 129, 129, 0.25);
+  &:hover {
+    color: rgba(0, 128, 128, 0.75);
+    background-color: rgba(128, 129, 129, 0.25);
+  }
 }
 
 .check-box {
@@ -102,9 +98,9 @@
   justify-content: center;
   font-size: 22px;
   color: teal;
-}
 
-.flag-icon:hover {
-  background-color: rgba(128, 128, 128, 0.25);
-  color: rgba(0, 128, 128, 0.75);
+  &:hover {
+    background-color: rgba(128, 128, 128, 0.25);
+    color: rgba(0, 128, 128, 0.75);
+  }
 }

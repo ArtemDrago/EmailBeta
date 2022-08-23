@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { changeFolderAction, deliteFolderAction } from '../../../store/redusers/folderReduser';
 import MyModal from '../../UI/modal/MyModal';
-import './style.css'
+import './style.scss'
 
 interface CastomFlutersProps {
     item: string,

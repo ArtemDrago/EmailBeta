@@ -7,7 +7,7 @@ import SettingBox from '../createAndSearch/SettingBox';
 import FolderLetters from '../componentsContentFolder/FolderLetters/FolderLetters';
 import FullScrinLetter from '../FullScrinLetter/FulScrinLetter';
 import TitleBlockMail from '../componentsFoldersName/titleBlockMail/TitleBlockMail';
-import './BodyMail.css'
+import './BodyMail.scss'
 import { lettersInFolder } from '../../store/action-creator/folder';
 import Registrate from '../registrate/Registrate';
 import RequireAuth from '../hoc/RequireAuth';

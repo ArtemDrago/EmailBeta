@@ -22,7 +22,7 @@
     border: 1px solid teal;
     border-radius: 12px;
     background-color: rgba(0, 128, 128, 0.2);
-    font-size: 22px;
+    font-size: 20px;
     font-style: italic;
     font-weight: 200;
     margin: 0 15px;
@@ -95,17 +95,17 @@
     color: teal;
     font-size: 22px;
     background-color: rgba(0, 128, 128, 0.15);
-}
 
-.filter-select:hover {
-    background-color: rgba(0, 128, 128, 0.5);
-    color: white;
-}
+    &:hover {
+        background-color: rgba(0, 128, 128, 0.5);
+        color: white;
+    }
 
-.filter-select:focus {
-    background-color: rgba(0, 128, 128, 0.75);
-    color: white;
+    &:focus {
+        background-color: rgba(0, 128, 128, 0.75);
+        color: white;
 
+    }
 }
 
 .my-node-enter {

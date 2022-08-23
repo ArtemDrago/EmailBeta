@@ -1,10 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useTypeSelector } from '../../hooks/useTypeSelector';
 import { lettersInFolder } from '../../store/action-creator/folder';
-import { addOutgoinLetterAction, readLetterAction } from '../../store/redusers/folderReduser';
+import { addOutgoinLetterAction, changeValueDraftsAction, readLetterAction } from '../../store/redusers/folderReduser';
 import './style.scss'
 
 interface FullScrinLetterProps {
@@ -44,6 +44,7 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
 
    const stateItem = stateFolder.filter(item => item.id.toString() === curId)
    const valuesArr = [...stateItem]
+
    const renderFullLetter = () => {
       let folderName = null
       key.forEach(key => {
@@ -63,7 +64,6 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
          if (folderName != null && id != curId) {
             document.location.pathname = `${urlFolder}`
          }
-
       }
    }
 
@@ -92,6 +92,12 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
       alert('Sent successfully')
    }
 
+   const [stateValue, setStateValue] = useState(valuesArr[0].value || '')
+
+   const valueSaveContent = () => {
+      dispatch(changeValueDraftsAction({ id: valuesArr[0].id, value: stateValue }))
+   }
+
    return (
       <div className='full-scrin'>
          <div className='btn-full'>
@@ -101,14 +107,22 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
             >
                <FontAwesomeIcon icon={['fas', 'xmark']} />
             </button>
-            {folderType === 'Drafts'
+            {folderTitle === 'Drafts'
                ?
-               <button
-                  className='btn-sent'
-                  onClick={() => addToOutgoinFullscrin()}
-               >
-                  Sent
-               </button>
+               <div className='btn-sentsave'>
+                  <button
+                     className='btn-sent'
+                     onClick={() => valueSaveContent()}
+                  >
+                     Save
+                  </button>
+                  <button
+                     className='btn-sent'
+                     onClick={() => addToOutgoinFullscrin()}
+                  >
+                     Sent
+                  </button>
+               </div>
                : <></>
             }
          </div>
@@ -120,7 +134,18 @@ const FullScrinLetter: React.FC<FullScrinLetterProps> = ({ folderType }) => {
                         {valuesArr[0].autor}
                      </div>
                      <div className='content text'>
-                        {valuesArr[0].value}
+                        {folderTitle === 'Drafts'
+                           ? <textarea
+                              className='textarea'
+                              maxLength={800}
+                              suppressContentEditableWarning={true}
+                              value={stateValue}
+                              wrap='hard'
+                              onChange={(e) => setStateValue(e.target.value)}
+                           />
+                           :
+                           <>{valuesArr[0].value}</>
+                        }
                      </div>
                      <div className='content'>
                         {valuesArr[0].date}

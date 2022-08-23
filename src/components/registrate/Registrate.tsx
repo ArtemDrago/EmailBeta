@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
-import './style.css'
+import './style.scss'
 
-interface RegistrateProps {
-
-}
+interface RegistrateProps { }
 
 const Registrate: React.FC<RegistrateProps> = ({ }) => {
 

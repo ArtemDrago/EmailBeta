@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NewFolder } from '../../../store/action-creator/folder';
 import { addFolderAction } from '../../../store/redusers/folderReduser';
 import MyModal from '../../UI/modal/MyModal';
-import './style.css'
+import './style.scss'
 
 interface SettingModalProps {
    setVisible: Function,

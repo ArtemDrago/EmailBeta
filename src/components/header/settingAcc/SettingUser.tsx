@@ -11,14 +11,18 @@ interface SettingUserProps {
 const SettingUser: React.FC<SettingUserProps> = ({ offVision }) => {
    const [userData, setUserData] = useState(JSON.parse(localStorage.getItem('user')!))
    const [name, setName] = useState(userData.user)
+   const them = useTheme()
+   const [activeThem, setActivThem] = useState(them.theme)
 
    const { theme, setTheme } = useTheme()
 
    const handleLightThemeClick = () => {
       setTheme('light')
+      setActivThem('light')
    }
    const handleDarkThemeClick = () => {
       setTheme('dark')
+      setActivThem('dark')
    }
 
    return (
@@ -47,13 +51,13 @@ const SettingUser: React.FC<SettingUserProps> = ({ offVision }) => {
          </h3>
          <div className='them-conyainer'>
             <button
-               className='btn-them'
+               className={activeThem === 'dark' ? 'btn-them them-active' : 'btn-them'}
                onClick={() => handleDarkThemeClick()}
             >
                dark
             </button>
             <button
-               className='btn-them'
+               className={activeThem === 'light' ? 'btn-them them-active' : 'btn-them'}
                onClick={() => handleLightThemeClick()}
             >
                light

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { lettersInFolder } from '../../../store/action-creator/folder';
 import { deilteLeterAction, highlightAction, readLetterAction } from '../../../store/redusers/folderReduser';
-import './style.css'
+import './style.scss'
 
 interface ContentFolderEmailsProps {
     item: lettersInFolder,

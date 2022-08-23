@@ -3,7 +3,6 @@
     height: 35px;
     padding: 15px;
     font-style: italic;
-    color: teal;
     font-size: 26px;
     border-radius: 12px;
     text-align: center;
@@ -11,19 +10,19 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
-}
 
-.name:hover {
-    background-color: rgba(0, 128, 128, 0.1);
+    &:hover {
+        background-color: rgba(0, 128, 128, 0.1);
+    }
 }
 
 .active {
     background-color: rgba(0, 128, 128, 0.25);
-}
 
-.active:hover {
-    color: white;
-    background-color: rgba(0, 128, 128, 0.5);
+    &:hover {
+        color: white;
+        background-color: rgba(0, 128, 128, 0.5);
+    }
 }
 
 a[aria-current] {

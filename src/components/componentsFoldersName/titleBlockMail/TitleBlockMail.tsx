@@ -20,14 +20,12 @@ const TitleBlockMail: React.FC<TitleBlockMailProps> = ({ keys, setFolder }) => {
                     Write a letter
                 </Link>
 
-
                 {keys.map((item, index) =>
                     <FolderName
                         item={item}
                         index={index}
                         key={index}
                         setFolder={setFolder}
-
                     />
                 )}
 
@@ -36,5 +34,4 @@ const TitleBlockMail: React.FC<TitleBlockMailProps> = ({ keys, setFolder }) => {
         </>
     );
 }
-
 export default TitleBlockMail;

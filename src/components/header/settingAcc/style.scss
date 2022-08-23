@@ -17,18 +17,18 @@
    height: 40px;
    padding: 10px;
    border: 1px solid white;
-   color: white;
+   color: var(--color-active) !important;
    border-radius: 12px;
    display: flex;
    align-items: center;
    justify-content: center;
    background-color: rgba(1, 162, 162, 0.25);
-}
 
-.btn-signout:hover {
-   border-color: black;
-   background-color: rgba(159, 161, 161, 0.75);
-   color: black;
+   &:hover {
+      border-color: black;
+      background-color: rgba(159, 161, 161, 0.45);
+      color: black;
+   }
 }
 
 .user-content {
@@ -122,10 +122,29 @@
    border: 1px solid white;
    margin-right: 10px;
    border-radius: 12px;
-   color: #fff;
+   color: var(--color-active) !important;
    background-color: rgba(1, 162, 162, 0.25);
 
    &:hover {
-      background-color: rgba(128, 128, 128, 0.75);
+      background-color: rgba(128, 128, 128, 0.5);
    }
+}
+
+.them-active {
+   background-color: var(--bg-color-active);
+   border: 2px solid var(--border-active);
+   transition: all 1s linear;
+}
+
+
+html[data-theme='dark'] {
+   --bg-color-active: rgb(23, 165, 165);
+   --color-active: white;
+   --border-active: rgb(7, 203, 203);
+}
+
+html[data-theme='light'] {
+   --bg-color-active: rgba(27, 174, 174, 0.75);
+   --color-active: white;
+   --border-active: teal;
 }

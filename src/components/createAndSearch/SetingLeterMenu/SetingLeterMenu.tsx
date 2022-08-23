@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { lettersInFolder } from '../../../store/action-creator/folder';
 import { deilteLetersAction, moveToFolderLetersAction, readItemsAction } from '../../../store/redusers/folderReduser';
-import './style.css'
+import './style.scss'
 
 interface SetingLeterMenuProps {
    choiceMail: lettersInFolder[],

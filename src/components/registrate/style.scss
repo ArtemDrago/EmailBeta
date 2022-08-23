@@ -49,16 +49,16 @@
    border: 1px solid black;
    color: teal;
    font-size: 20px;
-}
 
-.input-registrate:hover {
-   background-color: rgba(0, 128, 128, 0.05);
-}
+   &:hover {
+      background-color: rgba(0, 128, 128, 0.05);
+   }
 
-.input-registrate:focus {
-   border: 2px solid rgb(124, 190, 18);
-   background-color: rgba(0, 128, 102, 0.5);
-   color: white;
+   &:focus {
+      border: 2px solid rgb(124, 190, 18);
+      background-color: rgba(0, 128, 102, 0.5);
+      color: white;
+   }
 }
 
 .btn-registrate {
@@ -72,9 +72,9 @@
    border-radius: 12px;
    font-size: 22px;
    background-color: rgba(0, 128, 102, 0.25);
-}
 
-.btn-registrate:hover {
-   background-color: rgba(0, 128, 128, 0.75);
-   color: white;
+   &:hover {
+      background-color: rgba(0, 128, 128, 0.75);
+      color: white;
+   }
 }

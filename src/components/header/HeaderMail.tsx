@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import SettingUser from './settingAcc/SettingUser';
-import './style.css'
+import './style.scss'
 
 const HeaderMail: React.FC = () => {
    const [visionUserDate, setVisionUserDate] = useState(false)

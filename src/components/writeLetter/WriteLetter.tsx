@@ -6,9 +6,7 @@ import { lettersInFolder } from '../../store/action-creator/folder';
 import { addDraftLetterAction, addOutgoinLetterAction } from '../../store/redusers/folderReduser';
 import './style.scss'
 
-interface WriteLetterProps {
-
-}
+interface WriteLetterProps { }
 
 const WriteLetter: React.FC<WriteLetterProps> = () => {
    const navigate = useNavigate()
@@ -16,7 +14,6 @@ const WriteLetter: React.FC<WriteLetterProps> = () => {
    const [inputwhom, setInputWhom] = useState('')
    const [textwhom, setTextWhom] = useState('')
    const dispath = useDispatch()
-
 
    const addToDrafts = () => {
       if (inputwhom.length !== 0) {
@@ -54,7 +51,6 @@ const WriteLetter: React.FC<WriteLetterProps> = () => {
          setInputWhom('Min length 5 simbols')
       }
    }
-
 
    return (
       <div

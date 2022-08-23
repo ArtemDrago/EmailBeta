@@ -1,4 +1,3 @@
-
 import { FolderAction, FolderActionTypes, lettersInFolder, NewFolder } from "../action-creator/folder"
 import { LeterAction, LeterActionTypes } from "../action-creator/leter"
 import { arrayLetters } from "./state"
@@ -67,8 +66,7 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
          const leter = action.payload.item
          const filterArr = state.bigFolder[`${folderCase}`].letters.filter((item: lettersInFolder) => item.id !== leter.id)
          state.bigFolder[`${folderCase}`].letters = filterArr
-         const newId = new Date()
-         const idMail = +newId
+         const idMail = +new Date()
          leter.id = idMail
          if (folderCase !== 'Remote') {
             state.bigFolder.Remote.letters.push(leter)
@@ -130,10 +128,21 @@ export const folderReduser = (state = initialState, action: FolderAction | Leter
          state.bigFolder.Outgoing.letters = [...state.bigFolder.Outgoing.letters, action.payload]
          return { ...state }
 
+      case LeterActionTypes.CHANGE_VALUE_DRAFT:
+         const idLeterChangeVakue = +`${action.payload.id}`
+         state.bigFolder.Drafts.letters.forEach((item: lettersInFolder) => {
+            if (item.id == idLeterChangeVakue) {
+               item.value = action.payload.value
+            }
+         })
+
+         return { ...state }
+
       default:
          return state
    }
 }
+
 export const addFolderAction = (payload: NewFolder) => ({ type: FolderActionTypes.ADD_FOLDER, payload })
 export const deliteFolderAction = (payload: string) => ({ type: FolderActionTypes.DELITE_FOLDER, payload })
 export const changeFolderAction = (payload: string[]) => ({ type: FolderActionTypes.CHANGE_FOLDER, payload })
@@ -145,6 +154,7 @@ export const deilteLeterAction = (payload: { folderType: String, item: lettersIn
 export const deilteLetersAction = (payload: { folderType: String, item: lettersInFolder[] }) => ({ type: LeterActionTypes.DELITE_LETERS, payload })
 export const moveToFolderLetersAction = (payload: { oldFolder: String, newFolder: String, items: lettersInFolder[] }) => ({ type: LeterActionTypes.MOVE_TO_FOLDER, payload })
 export const highlightAction = (payload: { folder: String, item: lettersInFolder }) => ({ type: LeterActionTypes.HIGHLIGHT, payload })
+export const changeValueDraftsAction = (payload: { id: Number, value: string }) => ({ type: LeterActionTypes.CHANGE_VALUE_DRAFT, payload })
 
 export const addDraftLetterAction = (payload: lettersInFolder) => ({ type: LeterActionTypes.NEW_DRAFT, payload })
 export const addOutgoinLetterAction = (payload: lettersInFolder) => ({ type: LeterActionTypes.NEW_OUTGOIN, payload })

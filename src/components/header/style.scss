@@ -15,8 +15,6 @@
     display: flex;
     justify-content: center;
     font-weight: 700;
-    font-style: italic;
-    color: teal;
     cursor: default;
 }
 
@@ -31,12 +29,12 @@
     margin-right: 25px;
     border-radius: 12px;
     font-size: 20px;
-}
 
-.btn-control:hover {
-    border: 1px solid black;
-    color: white;
-    background-color: rgba(0, 128, 128, 0.75);
+    &:hover {
+        border: 1px solid black;
+        color: white;
+        background-color: rgba(0, 128, 128, 0.75);
+    }
 }
 
 .my-menu-enter {

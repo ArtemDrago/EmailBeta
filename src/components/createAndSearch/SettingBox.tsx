@@ -8,7 +8,7 @@ import { lettersInFolder } from '../../store/action-creator/folder';
 import { readAllAction } from '../../store/redusers/folderReduser';
 import SetingLeterMenu from './SetingLeterMenu/SetingLeterMenu';
 import SettingModal from './SettingModal/SettingModal';
-import './style.css'
+import './style.scss'
 
 interface SettingBoxProp {
     filterFolder: Function,

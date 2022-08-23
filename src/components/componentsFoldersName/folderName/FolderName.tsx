@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import CastomFluters from '../castomFluters/CastomFluters';
-import './style.css'
+import './style.scss'
 
 interface FolderNameProps {
     item: string,

@@ -1,6 +1,7 @@
 import { lettersInFolder } from "./folder";
 
-export type LeterAction = DeliteLeterAction | DeliteLetersAction | MoveToFolderAction | HighLightAction | addNewDraftAction | addNewOutgoinAction
+export type LeterAction = DeliteLeterAction | DeliteLetersAction | MoveToFolderAction |
+   HighLightAction | addNewDraftAction | addNewOutgoinAction | changeValueDraftAction
 
 export enum LeterActionTypes {
    DELITE_LETER = "DELITE_LETER",
@@ -8,7 +9,8 @@ export enum LeterActionTypes {
    MOVE_TO_FOLDER = "MOVE_TO_FOLDER",
    HIGHLIGHT = "HIGHLIGHT",
    NEW_DRAFT = "NEW_DRAFT",
-   NEW_OUTGOIN = "NEW_OUTGOIN"
+   NEW_OUTGOIN = "NEW_OUTGOIN",
+   CHANGE_VALUE_DRAFT = "CHANGE_VALUE_DRAFT"
 }
 export interface DeliteLeterAction {
    type: LeterActionTypes.DELITE_LETER;
@@ -47,4 +49,11 @@ export interface addNewDraftAction {
 export interface addNewOutgoinAction {
    type: LeterActionTypes.NEW_OUTGOIN,
    payload: lettersInFolder
+}
+export interface changeValueDraftAction {
+   type: LeterActionTypes.CHANGE_VALUE_DRAFT,
+   payload: {
+      id: Number,
+      value: string
+   }
 }

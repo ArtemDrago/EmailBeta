@@ -7,7 +7,7 @@
 .full-content {
    display: flex;
    width: 98.5%;
-   height: 85%;
+   height: 83%;
    align-items: flex-start;
    justify-content: space-between;
    padding: 15px;
@@ -16,7 +16,7 @@
 
 .btn-full {
    width: 98.5%;
-   height: 30px;
+   height: 50px;
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -78,4 +78,33 @@
    &:hover {
       background-color: var(--bg-hover);
    }
+}
+
+.textarea {
+   border-radius: 12px;
+   width: 100%;
+   height: 200px;
+   resize: none;
+   color: black !important;
+   padding: 10px;
+   font-size: 22px;
+
+   &:focus {
+      background-color: var(--bg-textarea);
+   }
+}
+
+.btn-sentsave {
+   display: flex;
+   width: 400px;
+   align-items: center;
+   justify-content: center;
+}
+
+html[data-theme='dark'] {
+   --bg-textarea: rgb(63, 133, 133);
+}
+
+html[data-theme='light'] {
+   --bg-textarea: rgba(85, 182, 182, 0.3);
 }
